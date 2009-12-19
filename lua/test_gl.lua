@@ -237,8 +237,8 @@ function printMatrix(m)
 end
 
 function initGL()
-  print("OpenGL version: " .. tostring(gl.version))
 	gl.Init()
+	print("OpenGL version: " .. tostring(gl.version))
   gl.ClearColor(0, 0, 0, 1)
   gl.ClearDepth(1)
   gl.DepthFunc(gl.LESS)
