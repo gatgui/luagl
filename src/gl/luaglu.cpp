@@ -319,11 +319,11 @@ class LuaGLU {
     
   public: // Callbacks management
     
-#ifdef __APPLE__
-    typedef GLvoid (CALLBACK *GLUcallback)(...);
-#else
+//#ifdef __APPLE__
+//    typedef GLvoid (CALLBACK *GLUcallback)(...);
+//#else
     typedef void (CALLBACK *GLUcallback)();
-#endif
+//#endif
 
     // Quadrics
   

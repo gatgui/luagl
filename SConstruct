@@ -19,14 +19,15 @@ prjs = [
     "prefix": "lua",
     "custom": [lua.Require]
   },
-  { "name"  : "luagl",
-    "type"  : "dynamicmodule",
-    "defs"  : ["GLEW_STATIC", "GLEW_BUILD"],
-    "srcs"  : glob.glob("src/gl/*.cpp") + glob.glob("src/gl/mem/*.cpp") + ["src/gl/glew.c"],
-    "ext"   : ".so",
-    "prefix": "lua",
-    "deps"  : ["luabitop", "luaraw"],
-    "custom": [lua.Require, glut.Require]
+  { "name"    : "luagl",
+    "type"    : "dynamicmodule",
+    "defs"    : ["GLEW_STATIC", "GLEW_BUILD"],
+    "incdirs" : ["include"],
+    "srcs"    : glob.glob("src/gl/*.cpp") + glob.glob("src/gl/mem/*.cpp") + ["src/gl/glew.c"],
+    "ext"     : ".so",
+    "prefix"  : "lua",
+    "deps"    : ["luabitop", "luaraw"],
+    "custom"  : [lua.Require, glut.Require]
   }
 ]
 
