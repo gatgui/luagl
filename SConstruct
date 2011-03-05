@@ -4,6 +4,10 @@ import excons.tools
 from excons.tools import lua
 from excons.tools import glut
 
+defs = ["GLEW_STATIC", "GLEW_BUILD"]
+if int(ARGUMENTS.get("gluVariadicCallbacks", "0")) == 1:
+  defs.append("LUAGL_GLU_VARIADIC_CALLBACK")
+
 prjs = [
   { "name"  : "luabitop",
     "type"  : "dynamicmodule",
@@ -21,7 +25,7 @@ prjs = [
   },
   { "name"    : "luagl",
     "type"    : "dynamicmodule",
-    "defs"    : ["GLEW_STATIC", "GLEW_BUILD"],
+    "defs"    : defs,
     "incdirs" : ["include"],
     "srcs"    : glob.glob("src/gl/*.cpp") + ["src/gl/glew.c"],
     "ext"     : ".so",
