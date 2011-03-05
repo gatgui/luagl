@@ -60,9 +60,6 @@ LuaGL::LuaGL()
 
 LuaGL::~LuaGL() {
   msInstance = 0;
-  if (MemoryManager::InstancePtr()) {
-    delete MemoryManager::InstancePtr();
-  }
 }
 
 GLenum LuaGL::getConstant(const std::string &name) {
@@ -153,9 +150,6 @@ static int luagl_initialize(lua_State *L) {
 }
 
 static int luagl_cleanup(lua_State *) {
-  if (MemoryManager::InstancePtr()) {
-    delete MemoryManager::InstancePtr();
-  }
   return 0;
 }
 

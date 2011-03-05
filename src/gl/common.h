@@ -44,8 +44,6 @@ USA.
 
 #include <lua.hpp>
 
-#include "mem/manager.h"
-
 #define CHECK_ARG_COUNT(L, n) \
   if (lua_gettop(L) != n) {\
     lua_pushfstring(L, "%d arguments expected (including self when it applies)", n);\
