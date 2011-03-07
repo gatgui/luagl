@@ -26,329 +26,149 @@ USA.
 #include "wrap.h"
 
 static int lua_glBlendColor(lua_State *L) {
-#ifndef LUAGL_FUNC_AS_ARG
-  return WrapFunc4<Clampf, Clampf, Clampf, Clampf, glBlendColor>::Call(L);
-#else
   return WrapFunc4<Clampf, Clampf, Clampf, Clampf >::Call(L, glBlendColor);
-#endif
 }
 
 static int lua_glBlendEquation(lua_State *L) {
-#ifndef LUAGL_FUNC_AS_ARG
-  return WrapFunc1<Enum, glBlendEquation>::Call(L);
-#else
   return WrapFunc1<Enum >::Call(L, glBlendEquation);
-#endif
 }
 
 static int lua_glBlendFuncSeparate(lua_State *L) {
-#ifndef LUAGL_FUNC_AS_ARG
-  return WrapFunc4<Enum, Enum, Enum, Enum, glBlendFuncSeparate>::Call(L);
-#else
   return WrapFunc4<Enum, Enum, Enum, Enum >::Call(L, glBlendFuncSeparate);
-#endif
 }
 
 static int lua_glFogCoordPointer(lua_State *L) {
-#ifndef LUAGL_FUNC_AS_ARG
-  return WrapFunc3<Enum, Sizei, ConstPtr, glFogCoordPointer>::Call(L);
-#else
   return WrapFunc3<Enum, Sizei, ConstPtr >::Call(L, glFogCoordPointer);
-#endif
 }
 
 static int lua_glFogCoordd(lua_State *L) {
-#ifndef LUAGL_FUNC_AS_ARG
-  return WrapFunc1<Double, glFogCoordd>::Call(L);
-#else
   return WrapFunc1<Double >::Call(L, glFogCoordd);
-#endif
 }
 static int lua_glFogCoordf(lua_State *L) {
-#ifndef LUAGL_FUNC_AS_ARG
-  return WrapFunc1<Float, glFogCoordf>::Call(L);
-#else
   return WrapFunc1<Float >::Call(L, glFogCoordf);
-#endif
 }
 
 static int lua_glMultiDrawArrays(lua_State *L) {
-#ifndef LUAGL_FUNC_AS_ARG
-  return WrapFunc4<Enum, TypedPtr<Int>, TypedPtr<Sizei>, Sizei, glMultiDrawArrays>::Call(L);
-#else
   return WrapFunc4<Enum, TypedPtr<Int>, TypedPtr<Sizei>, Sizei >::Call(L, glMultiDrawArrays);
-#endif
 }
 
 static int lua_glMultiDrawElements(lua_State *L) {
-#ifndef LUAGL_FUNC_AS_ARG
-  return WrapFunc5<Enum, Array<Sizei>, Enum, Array<ConstPtr>, Sizei, glMultiDrawElements>::Call(L);
-#else
   return WrapFunc5<Enum, Array<Sizei>, Enum, Array<ConstPtr>, Sizei >::Call(L, glMultiDrawElements);
-#endif
 }
 
 static int lua_glPointParameterf(lua_State *L) {
-#ifndef LUAGL_FUNC_AS_ARG
-  return WrapFunc2<Enum, Float, glPointParameterf>::Call(L);
-#else
   return WrapFunc2<Enum, Float >::Call(L, glPointParameterf);
-#endif
 }
 static int lua_glPointParameterfv(lua_State *L) {
-#ifndef LUAGL_FUNC_AS_ARG
-  return WrapFunc2<Enum, Array<Float>, glPointParameterfv>::Call(L);
-#else
   return WrapFunc2<Enum, Array<Float> >::Call(L, glPointParameterfv);
-#endif
 }
 static int lua_glPointParameteri(lua_State *L) {
-#ifndef LUAGL_FUNC_AS_ARG
-  return WrapFunc2<Enum, Int, glPointParameteri>::Call(L);
-#else
   return WrapFunc2<Enum, Int >::Call(L, glPointParameteri);
-#endif
 }
 static int lua_glPointParameteriv(lua_State *L) {
-#ifndef LUAGL_FUNC_AS_ARG
-  return WrapFunc2<Enum, Array<Int>, glPointParameteriv>::Call(L);
-#else
   return WrapFunc2<Enum, Array<Int> >::Call(L, glPointParameteriv);
-#endif
 }
 
 static int lua_glSecondaryColor3b(lua_State *L) {
-#ifndef LUAGL_FUNC_AS_ARG
-  return WrapFunc3<Byte, Byte, Byte, glSecondaryColor3b>::Call(L);
-#else
   return WrapFunc3<Byte, Byte, Byte >::Call(L, glSecondaryColor3b);
-#endif
 }
 static int lua_glSecondaryColor3bv(lua_State *L) {
-#ifndef LUAGL_FUNC_AS_ARG
-  return WrapFunc1<ConstArray<Byte>, glSecondaryColor3bv>::Call(L);
-#else
-  return WrapFunc1<ConstArray<Byte> >::Call(L, glSecondaryColor3bv);
-#endif
+  return WrapFunc1<ConstArrayN<Byte, 3> >::Call(L, glSecondaryColor3bv);
 }
 static int lua_glSecondaryColor3d(lua_State *L) {
-#ifndef LUAGL_FUNC_AS_ARG
-  return WrapFunc3<Double, Double, Double, glSecondaryColor3d>::Call(L);
-#else
   return WrapFunc3<Double, Double, Double >::Call(L, glSecondaryColor3d);
-#endif
 }
 static int lua_glSecondaryColor3dv(lua_State *L) {
-#ifndef LUAGL_FUNC_AS_ARG
-  return WrapFunc1<ConstArray<Double>, glSecondaryColor3dv>::Call(L);
-#else
-  return WrapFunc1<ConstArray<Double> >::Call(L, glSecondaryColor3dv);
-#endif
+  return WrapFunc1<ConstArrayN<Double, 3> >::Call(L, glSecondaryColor3dv);
 }
 static int lua_glSecondaryColor3f(lua_State *L) {
-#ifndef LUAGL_FUNC_AS_ARG
-  return WrapFunc3<Float, Float, Float, glSecondaryColor3f>::Call(L);
-#else
   return WrapFunc3<Float, Float, Float >::Call(L, glSecondaryColor3f);
-#endif
 }
 static int lua_glSecondaryColor3fv(lua_State *L) {
-#ifndef LUAGL_FUNC_AS_ARG
-  return WrapFunc1<ConstArray<Float>, glSecondaryColor3fv>::Call(L);
-#else
-  return WrapFunc1<ConstArray<Float> >::Call(L, glSecondaryColor3fv);
-#endif
+  return WrapFunc1<ConstArrayN<Float, 3> >::Call(L, glSecondaryColor3fv);
 }
 static int lua_glSecondaryColor3i(lua_State *L) {
-#ifndef LUAGL_FUNC_AS_ARG
-  return WrapFunc3<Int, Int, Int, glSecondaryColor3i>::Call(L);
-#else
   return WrapFunc3<Int, Int, Int >::Call(L, glSecondaryColor3i);
-#endif
 }
 static int lua_glSecondaryColor3iv(lua_State *L) {
-#ifndef LUAGL_FUNC_AS_ARG
-  return WrapFunc1<ConstArray<Int>, glSecondaryColor3iv>::Call(L);
-#else
-  return WrapFunc1<ConstArray<Int> >::Call(L, glSecondaryColor3iv);
-#endif
+  return WrapFunc1<ConstArrayN<Int, 3> >::Call(L, glSecondaryColor3iv);
 }
 static int lua_glSecondaryColor3s(lua_State *L) {
-#ifndef LUAGL_FUNC_AS_ARG
-  return WrapFunc3<Short, Short, Short, glSecondaryColor3s>::Call(L);
-#else
   return WrapFunc3<Short, Short, Short >::Call(L, glSecondaryColor3s);
-#endif
 }
 static int lua_glSecondaryColor3sv(lua_State *L) {
-#ifndef LUAGL_FUNC_AS_ARG
-  return WrapFunc1<ConstArray<Short>, glSecondaryColor3sv>::Call(L);
-#else
-  return WrapFunc1<ConstArray<Short> >::Call(L, glSecondaryColor3sv);
-#endif
+  return WrapFunc1<ConstArrayN<Short, 3> >::Call(L, glSecondaryColor3sv);
 }
 static int lua_glSecondaryColor3ub(lua_State *L) {
-#ifndef LUAGL_FUNC_AS_ARG
-  return WrapFunc3<Ubyte, Ubyte, Ubyte, glSecondaryColor3ub>::Call(L);
-#else
   return WrapFunc3<Ubyte, Ubyte, Ubyte >::Call(L, glSecondaryColor3ub);
-#endif
 }
 static int lua_glSecondaryColor3ubv(lua_State *L) {
-#ifndef LUAGL_FUNC_AS_ARG
-  return WrapFunc1<ConstArray<Ubyte>, glSecondaryColor3ubv>::Call(L);
-#else
-  return WrapFunc1<ConstArray<Ubyte> >::Call(L, glSecondaryColor3ubv);
-#endif
+  return WrapFunc1<ConstArrayN<Ubyte, 3> >::Call(L, glSecondaryColor3ubv);
 }
 static int lua_glSecondaryColor3ui(lua_State *L) {
-#ifndef LUAGL_FUNC_AS_ARG
-  return WrapFunc3<Uint, Uint, Uint, glSecondaryColor3ui>::Call(L);
-#else
   return WrapFunc3<Uint, Uint, Uint >::Call(L, glSecondaryColor3ui);
-#endif
 }
 static int lua_glSecondaryColor3uiv(lua_State *L) {
-#ifndef LUAGL_FUNC_AS_ARG
-  return WrapFunc1<ConstArray<Uint>, glSecondaryColor3uiv>::Call(L);
-#else
-  return WrapFunc1<ConstArray<Uint> >::Call(L, glSecondaryColor3uiv);
-#endif
+  return WrapFunc1<ConstArrayN<Uint, 3> >::Call(L, glSecondaryColor3uiv);
 }
 static int lua_glSecondaryColor3us(lua_State *L) {
-#ifndef LUAGL_FUNC_AS_ARG
-  return WrapFunc3<Ushort, Ushort, Ushort, glSecondaryColor3us>::Call(L);
-#else
   return WrapFunc3<Ushort, Ushort, Ushort >::Call(L, glSecondaryColor3us);
-#endif
 }
 static int lua_glSecondaryColor3usv(lua_State *L) {
-#ifndef LUAGL_FUNC_AS_ARG
-  return WrapFunc1<ConstArray<Ushort>, glSecondaryColor3usv>::Call(L);
-#else
-  return WrapFunc1<ConstArray<Ushort> >::Call(L, glSecondaryColor3usv);
-#endif
+  return WrapFunc1<ConstArrayN<Ushort, 3> >::Call(L, glSecondaryColor3usv);
 }
 
 static int lua_glSecondaryColorPointer(lua_State *L) {
-#ifndef LUAGL_FUNC_AS_ARG
-  return WrapFunc4<Int, Enum, Sizei, Ptr, glSecondaryColorPointer>::Call(L);
-#else
   return WrapFunc4<Int, Enum, Sizei, Ptr >::Call(L, glSecondaryColorPointer);
-#endif
 }
 
 static int lua_glWindowPos2d(lua_State *L) {
-#ifndef LUAGL_FUNC_AS_ARG
-  return WrapFunc2<Double, Double, glWindowPos2d>::Call(L);
-#else
   return WrapFunc2<Double, Double >::Call(L, glWindowPos2d);
-#endif
 }
 static int lua_glWindowPos2dv(lua_State *L) {
-#ifndef LUAGL_FUNC_AS_ARG
-  return WrapFunc1<ConstArray<Double>, glWindowPos2dv>::Call(L);
-#else
-  return WrapFunc1<ConstArray<Double> >::Call(L, glWindowPos2dv);
-#endif
+  return WrapFunc1<ConstArrayN<Double, 2> >::Call(L, glWindowPos2dv);
 }
 static int lua_glWindowPos2f(lua_State *L) {
-#ifndef LUAGL_FUNC_AS_ARG
-  return WrapFunc2<Float, Float, glWindowPos2f>::Call(L);
-#else
   return WrapFunc2<Float, Float >::Call(L, glWindowPos2f);
-#endif
 }
 static int lua_glWindowPos2fv(lua_State *L) {
-#ifndef LUAGL_FUNC_AS_ARG
-  return WrapFunc1<ConstArray<Float>, glWindowPos2fv>::Call(L);
-#else
-  return WrapFunc1<ConstArray<Float> >::Call(L, glWindowPos2fv);
-#endif
+  return WrapFunc1<ConstArrayN<Float, 2> >::Call(L, glWindowPos2fv);
 }
 static int lua_glWindowPos2i(lua_State *L) {
-#ifndef LUAGL_FUNC_AS_ARG
-  return WrapFunc2<Int, Int, glWindowPos2i>::Call(L);
-#else
   return WrapFunc2<Int, Int >::Call(L, glWindowPos2i);
-#endif
 }
 static int lua_glWindowPos2iv(lua_State *L) {
-#ifndef LUAGL_FUNC_AS_ARG
-  return WrapFunc1<ConstArray<Int>, glWindowPos2iv>::Call(L);
-#else
-  return WrapFunc1<ConstArray<Int> >::Call(L, glWindowPos2iv);
-#endif
+  return WrapFunc1<ConstArrayN<Int, 2> >::Call(L, glWindowPos2iv);
 }
 static int lua_glWindowPos2s(lua_State *L) {
-#ifndef LUAGL_FUNC_AS_ARG
-  return WrapFunc2<Short, Short, glWindowPos2s>::Call(L);
-#else
   return WrapFunc2<Short, Short >::Call(L, glWindowPos2s);
-#endif
 }
 static int lua_glWindowPos2sv(lua_State *L) {
-#ifndef LUAGL_FUNC_AS_ARG
-  return WrapFunc1<ConstArray<Short>, glWindowPos2sv>::Call(L);
-#else
-  return WrapFunc1<ConstArray<Short> >::Call(L, glWindowPos2sv);
-#endif
+  return WrapFunc1<ConstArrayN<Short, 2> >::Call(L, glWindowPos2sv);
 }
 static int lua_glWindowPos3d(lua_State *L) {
-#ifndef LUAGL_FUNC_AS_ARG
-  return WrapFunc3<Double, Double, Double, glWindowPos3d>::Call(L);
-#else
   return WrapFunc3<Double, Double, Double >::Call(L, glWindowPos3d);
-#endif
 }
 static int lua_glWindowPos3dv(lua_State *L) {
-#ifndef LUAGL_FUNC_AS_ARG
-  return WrapFunc1<ConstArray<Double>, glWindowPos3dv>::Call(L);
-#else
-  return WrapFunc1<ConstArray<Double> >::Call(L, glWindowPos3dv);
-#endif
+  return WrapFunc1<ConstArrayN<Double, 3> >::Call(L, glWindowPos3dv);
 }
 static int lua_glWindowPos3f(lua_State *L) {
-#ifndef LUAGL_FUNC_AS_ARG
-  return WrapFunc3<Float, Float, Float, glWindowPos3f>::Call(L);
-#else
   return WrapFunc3<Float, Float, Float >::Call(L, glWindowPos3f);
-#endif
 }
 static int lua_glWindowPos3fv(lua_State *L) {
-#ifndef LUAGL_FUNC_AS_ARG
-  return WrapFunc1<ConstArray<Float>, glWindowPos3fv>::Call(L);
-#else
-  return WrapFunc1<ConstArray<Float> >::Call(L, glWindowPos3fv);
-#endif
+  return WrapFunc1<ConstArrayN<Float, 3> >::Call(L, glWindowPos3fv);
 }
 static int lua_glWindowPos3i(lua_State *L) {
-#ifndef LUAGL_FUNC_AS_ARG
-  return WrapFunc3<Int, Int, Int, glWindowPos3i>::Call(L);
-#else
   return WrapFunc3<Int, Int, Int >::Call(L, glWindowPos3i);
-#endif
 }
 static int lua_glWindowPos3iv(lua_State *L) {
-#ifndef LUAGL_FUNC_AS_ARG
-  return WrapFunc1<ConstArray<Int>, glWindowPos3iv>::Call(L);
-#else
-  return WrapFunc1<ConstArray<Int> >::Call(L, glWindowPos3iv);
-#endif
+  return WrapFunc1<ConstArrayN<Int, 3> >::Call(L, glWindowPos3iv);
 }
 static int lua_glWindowPos3s(lua_State *L) {
-#ifndef LUAGL_FUNC_AS_ARG
-  return WrapFunc3<Short, Short, Short, glWindowPos3s>::Call(L);
-#else
   return WrapFunc3<Short, Short, Short >::Call(L, glWindowPos3s);
-#endif
 }
 static int lua_glWindowPos3sv(lua_State *L) {
-#ifndef LUAGL_FUNC_AS_ARG
-  return WrapFunc1<ConstArray<Short>, glWindowPos3sv>::Call(L);
-#else
-  return WrapFunc1<ConstArray<Short> >::Call(L, glWindowPos3sv);
-#endif
+  return WrapFunc1<ConstArrayN<Short, 3> >::Call(L, glWindowPos3sv);
 }
 
 void Register_GL_1_4_Constants(LuaGL::ConstantMap &constants) {

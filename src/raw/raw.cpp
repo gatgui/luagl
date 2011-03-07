@@ -855,6 +855,7 @@ template <DataType DT>
 static int struct_buffer_len(lua_State *L) {
   CHECK_ARG_COUNT(L, 1);
   StructuredBuffer<DT> *b = struct_buffer_check<DT>(L, 1);
+  // if is iterator -> getFieldCount
   lua_pushinteger(L, b->getElementCount()*b->getElementStride());
   return 1;
 }
@@ -1050,6 +1051,10 @@ static int struct_buffer_elements(lua_State *L) {
   // "-stride" a we pre-increment and use the same buffer for each element
   // if we post increment, by the time the buffer is used in lua, it points to next element
   new (ud) LuaStructuredBuffer<DT>(structure, data-stride, 1, stride);
+  
+  // 
+  ((LuaStructuredBuffer<DT>*)ud)->buffer->asIterator();
+  
   lua_getfield(L, LUA_REGISTRYINDEX, LuaStructuredBuffer<DT>::RegistryKey());
   lua_setmetatable(L, -2);
   

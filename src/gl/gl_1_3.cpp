@@ -26,321 +26,145 @@ USA.
 #include "wrap.h"
 
 static int lua_glActiveTexture(lua_State *L) {
-#ifndef LUAGL_FUNC_AS_ARG
-  return WrapFunc1<Enum, glActiveTexture>::Call(L);
-#else
   return WrapFunc1<Enum >::Call(L, glActiveTexture);
-#endif
 }
 
 static int lua_glClientActiveTexture(lua_State *L) {
-#ifndef LUAGL_FUNC_AS_ARG
-  return WrapFunc1<Enum, glClientActiveTexture>::Call(L);
-#else
   return WrapFunc1<Enum >::Call(L, glClientActiveTexture);
-#endif
 }
 
 static int lua_glCompressedTexImage1D(lua_State *L) {
-#ifndef LUAGL_FUNC_AS_ARG
-  return WrapFunc7<Enum, Int, Enum, Sizei, Int, Sizei, ConstPtr, glCompressedTexImage1D>::Call(L);
-#else
   return WrapFunc7<Enum, Int, Enum, Sizei, Int, Sizei, ConstPtr >::Call(L, glCompressedTexImage1D);
-#endif
 }
 
 static int lua_glCompressedTexImage2D(lua_State *L) {
-#ifndef LUAGL_FUNC_AS_ARG
-  return WrapFunc8<Enum, Int, Enum, Sizei, Sizei, Int, Sizei, ConstPtr, glCompressedTexImage2D>::Call(L);
-#else
   return WrapFunc8<Enum, Int, Enum, Sizei, Sizei, Int, Sizei, ConstPtr >::Call(L, glCompressedTexImage2D);
-#endif
 }
 
 static int lua_glCompressedTexImage3D(lua_State *L) {
-#ifndef LUAGL_FUNC_AS_ARG
-  return WrapFunc9<Enum, Int, Enum, Sizei, Sizei, Sizei, Int, Sizei, ConstPtr, glCompressedTexImage3D>::Call(L);
-#else
   return WrapFunc9<Enum, Int, Enum, Sizei, Sizei, Sizei, Int, Sizei, ConstPtr >::Call(L, glCompressedTexImage3D);
-#endif
 }
 
 static int lua_glCompressedTexSubImage1D(lua_State *L) {
-#ifndef LUAGL_FUNC_AS_ARG
-  return WrapFunc7<Enum, Int, Int, Sizei, Enum, Sizei, ConstPtr, glCompressedTexSubImage1D>::Call(L);
-#else
   return WrapFunc7<Enum, Int, Int, Sizei, Enum, Sizei, ConstPtr >::Call(L, glCompressedTexSubImage1D);
-#endif
 }
 
 static int lua_glCompressedTexSubImage2D(lua_State *L) {
-#ifndef LUAGL_FUNC_AS_ARG
-  return WrapFunc9<Enum, Int, Int, Int, Sizei, Sizei, Enum, Sizei, ConstPtr, glCompressedTexSubImage2D>::Call(L);
-#else
   return WrapFunc9<Enum, Int, Int, Int, Sizei, Sizei, Enum, Sizei, ConstPtr >::Call(L, glCompressedTexSubImage2D);
-#endif
 }
 
 static int lua_glCompressedTexSubImage3D(lua_State *L) {
-#ifndef LUAGL_FUNC_AS_ARG
-  return WrapFunc11<Enum, Int, Int, Int, Int, Sizei, Sizei, Sizei, Enum, Sizei, ConstPtr, glCompressedTexSubImage3D>::Call(L);
-#else
   return WrapFunc11<Enum, Int, Int, Int, Int, Sizei, Sizei, Sizei, Enum, Sizei, ConstPtr >::Call(L, glCompressedTexSubImage3D);
-#endif
 }
 
 static int lua_glGetCompressedTexImage(lua_State *L) {
-#ifndef LUAGL_FUNC_AS_ARG
-  return WrapFunc3<Enum, Int, Ptr, glGetCompressedTexImage>::Call(L);
-#else
   return WrapFunc3<Enum, Int, Ptr >::Call(L, glGetCompressedTexImage);
-#endif
 }
 
 static int lua_glLoadTransposeMatrixf(lua_State *L) {
-  CHECK_ARG_COUNT(L, 1);
-  Array1D<Float> m(L, 1);
-  if (m.size() != 16) {
-    luaL_error(L, "gl.LoadTransposeMatrixf: invalid matrix data");
-  }
-  glLoadTransposeMatrixf(m);
-  return 0;
+  return WrapFunc1<ConstArrayN<Float, 16> >::Call(L, glLoadTransposeMatrixf);
 }
 static int lua_glLoadTransposeMatrixd(lua_State *L) {
-  CHECK_ARG_COUNT(L, 1);
-  Array1D<Double> m(L, 1);
-  if (m.size() != 16) {
-    luaL_error(L, "gl.LoadTransposeMatrixd: invalid matrix data");
-  }
-  glLoadTransposeMatrixd(m);
-  return 0;
+  return WrapFunc1<ConstArrayN<Double, 16> >::Call(L, glLoadTransposeMatrixd);
 }
 
 static int lua_glMultTransposeMatrixf(lua_State *L) {
-  CHECK_ARG_COUNT(L, 1);
-  Array1D<Float> m(L, 1);
-  if (m.size() != 16) {
-    luaL_error(L, "gl.MultTransposeMatrixf: invalid matrix data");
-  }
-  glMultTransposeMatrixf(m);
-  return 0;
+  return WrapFunc1<ConstArrayN<Float, 16> >::Call(L, glMultTransposeMatrixf);
 }
 static int lua_glMultTransposeMatrixd(lua_State *L) {
-  CHECK_ARG_COUNT(L, 1);
-  Array1D<Double> m(L, 1);
-  if (m.size() != 16) {
-    luaL_error(L, "gl.MultTransposeMatrixd: invalid matrix data");
-  }
-  glMultTransposeMatrixd(m);
-  return 0;
+  return WrapFunc1<ConstArrayN<Double, 16> >::Call(L, glMultTransposeMatrixd);
 }
 
 static int lua_glMultiTexCoord1s(lua_State *L) {
-#ifndef LUAGL_FUNC_AS_ARG
-  return WrapFunc2<Enum, Short, glMultiTexCoord1s>::Call(L);
-#else
   return WrapFunc2<Enum, Short >::Call(L, glMultiTexCoord1s);
-#endif
 }
 static int lua_glMultiTexCoord1i(lua_State *L) {
-#ifndef LUAGL_FUNC_AS_ARG
-  return WrapFunc2<Enum, Int, glMultiTexCoord1i>::Call(L);
-#else
   return WrapFunc2<Enum, Int >::Call(L, glMultiTexCoord1i);
-#endif
 }
 static int lua_glMultiTexCoord1f(lua_State *L) {
-#ifndef LUAGL_FUNC_AS_ARG
-  return WrapFunc2<Enum, Float, glMultiTexCoord1f>::Call(L);
-#else
   return WrapFunc2<Enum, Float >::Call(L, glMultiTexCoord1f);
-#endif
 }
 static int lua_glMultiTexCoord1d(lua_State *L) {
-#ifndef LUAGL_FUNC_AS_ARG
-  return WrapFunc2<Enum, Double, glMultiTexCoord1d>::Call(L);
-#else
   return WrapFunc2<Enum, Double >::Call(L, glMultiTexCoord1d);
-#endif
 }
 
 static int lua_glMultiTexCoord2s(lua_State *L) {
-#ifndef LUAGL_FUNC_AS_ARG
-  return WrapFunc3<Enum, Short, Short, glMultiTexCoord2s>::Call(L);
-#else
   return WrapFunc3<Enum, Short, Short >::Call(L, glMultiTexCoord2s);
-#endif
 }
 static int lua_glMultiTexCoord2i(lua_State *L) {
-#ifndef LUAGL_FUNC_AS_ARG
-  return WrapFunc3<Enum, Int, Int, glMultiTexCoord2i>::Call(L);
-#else
   return WrapFunc3<Enum, Int, Int >::Call(L, glMultiTexCoord2i);
-#endif
 }
 static int lua_glMultiTexCoord2f(lua_State *L) {
-#ifndef LUAGL_FUNC_AS_ARG
-  return WrapFunc3<Enum, Float, Float, glMultiTexCoord2f>::Call(L);
-#else
   return WrapFunc3<Enum, Float, Float >::Call(L, glMultiTexCoord2f);
-#endif
 }
 static int lua_glMultiTexCoord2d(lua_State *L) {
-#ifndef LUAGL_FUNC_AS_ARG
-  return WrapFunc3<Enum, Double, Double, glMultiTexCoord2d>::Call(L);
-#else
   return WrapFunc3<Enum, Double, Double >::Call(L, glMultiTexCoord2d);
-#endif
 }
 static int lua_glMultiTexCoord2sv(lua_State *L) {
-#ifndef LUAGL_FUNC_AS_ARG
-  return WrapFunc2<Enum, ConstArray<Short>, glMultiTexCoord2sv>::Call(L);
-#else
-  return WrapFunc2<Enum, ConstArray<Short> >::Call(L, glMultiTexCoord2sv);
-#endif
+  return WrapFunc2<Enum, ConstArrayN<Short, 2> >::Call(L, glMultiTexCoord2sv);
 }
 static int lua_glMultiTexCoord2iv(lua_State *L) {
-#ifndef LUAGL_FUNC_AS_ARG
-  return WrapFunc2<Enum, ConstArray<Int>, glMultiTexCoord2iv>::Call(L);
-#else
-  return WrapFunc2<Enum, ConstArray<Int> >::Call(L, glMultiTexCoord2iv);
-#endif
+  return WrapFunc2<Enum, ConstArrayN<Int, 2> >::Call(L, glMultiTexCoord2iv);
 }
 static int lua_glMultiTexCoord2fv(lua_State *L) {
-#ifndef LUAGL_FUNC_AS_ARG
-  return WrapFunc2<Enum, ConstArray<Float>, glMultiTexCoord2fv>::Call(L);
-#else
-  return WrapFunc2<Enum, ConstArray<Float> >::Call(L, glMultiTexCoord2fv);
-#endif
+  return WrapFunc2<Enum, ConstArrayN<Float, 2> >::Call(L, glMultiTexCoord2fv);
 }
 static int lua_glMultiTexCoord2dv(lua_State *L) {
-#ifndef LUAGL_FUNC_AS_ARG
-  return WrapFunc2<Enum, ConstArray<Double>, glMultiTexCoord2dv>::Call(L);
-#else
-  return WrapFunc2<Enum, ConstArray<Double> >::Call(L, glMultiTexCoord2dv);
-#endif
+  return WrapFunc2<Enum, ConstArrayN<Double, 2> >::Call(L, glMultiTexCoord2dv);
 }
 
 static int lua_glMultiTexCoord3s(lua_State *L) {
-#ifndef LUAGL_FUNC_AS_ARG
-  return WrapFunc4<Enum, Short, Short, Short, glMultiTexCoord3s>::Call(L);
-#else
   return WrapFunc4<Enum, Short, Short, Short >::Call(L, glMultiTexCoord3s);
-#endif
 }
 static int lua_glMultiTexCoord3i(lua_State *L) {
-#ifndef LUAGL_FUNC_AS_ARG
-  return WrapFunc4<Enum, Int, Int, Int, glMultiTexCoord3i>::Call(L);
-#else
   return WrapFunc4<Enum, Int, Int, Int >::Call(L, glMultiTexCoord3i);
-#endif
 }
 static int lua_glMultiTexCoord3f(lua_State *L) {
-#ifndef LUAGL_FUNC_AS_ARG
-  return WrapFunc4<Enum, Float, Float, Float, glMultiTexCoord3f>::Call(L);
-#else
   return WrapFunc4<Enum, Float, Float, Float >::Call(L, glMultiTexCoord3f);
-#endif
 }
 static int lua_glMultiTexCoord3d(lua_State *L) {
-#ifndef LUAGL_FUNC_AS_ARG
-  return WrapFunc4<Enum, Double, Double, Double, glMultiTexCoord3d>::Call(L);
-#else
   return WrapFunc4<Enum, Double, Double, Double >::Call(L, glMultiTexCoord3d);
-#endif
 }
 static int lua_glMultiTexCoord3sv(lua_State *L) {
-#ifndef LUAGL_FUNC_AS_ARG
-  return WrapFunc2<Enum, ConstArray<Short>, glMultiTexCoord3sv>::Call(L);
-#else
-  return WrapFunc2<Enum, ConstArray<Short> >::Call(L, glMultiTexCoord3sv);
-#endif
+  return WrapFunc2<Enum, ConstArrayN<Short, 3> >::Call(L, glMultiTexCoord3sv);
 }
 static int lua_glMultiTexCoord3iv(lua_State *L) {
-#ifndef LUAGL_FUNC_AS_ARG
-  return WrapFunc2<Enum, ConstArray<Int>, glMultiTexCoord3iv>::Call(L);
-#else
-  return WrapFunc2<Enum, ConstArray<Int> >::Call(L, glMultiTexCoord3iv);
-#endif
+  return WrapFunc2<Enum, ConstArrayN<Int, 3> >::Call(L, glMultiTexCoord3iv);
 }
 static int lua_glMultiTexCoord3fv(lua_State *L) {
-#ifndef LUAGL_FUNC_AS_ARG
-  return WrapFunc2<Enum, ConstArray<Float>, glMultiTexCoord3fv>::Call(L);
-#else
-  return WrapFunc2<Enum, ConstArray<Float> >::Call(L, glMultiTexCoord3fv);
-#endif
+  return WrapFunc2<Enum, ConstArrayN<Float, 3> >::Call(L, glMultiTexCoord3fv);
 }
 static int lua_glMultiTexCoord3dv(lua_State *L) {
-#ifndef LUAGL_FUNC_AS_ARG
-  return WrapFunc2<Enum, ConstArray<Double>, glMultiTexCoord3dv>::Call(L);
-#else
-  return WrapFunc2<Enum, ConstArray<Double> >::Call(L, glMultiTexCoord3dv);
-#endif
+  return WrapFunc2<Enum, ConstArrayN<Double, 3> >::Call(L, glMultiTexCoord3dv);
 }
 
 static int lua_glMultiTexCoord4s(lua_State *L) {
-#ifndef LUAGL_FUNC_AS_ARG
-  return WrapFunc5<Enum, Short, Short, Short, Short, glMultiTexCoord4s>::Call(L);
-#else
   return WrapFunc5<Enum, Short, Short, Short, Short >::Call(L, glMultiTexCoord4s);
-#endif
 }
 static int lua_glMultiTexCoord4i(lua_State *L) {
-#ifndef LUAGL_FUNC_AS_ARG
-  return WrapFunc5<Enum, Int, Int, Int, Int, glMultiTexCoord4i>::Call(L);
-#else
   return WrapFunc5<Enum, Int, Int, Int, Int >::Call(L, glMultiTexCoord4i);
-#endif
 }
 static int lua_glMultiTexCoord4f(lua_State *L) {
-#ifndef LUAGL_FUNC_AS_ARG
-  return WrapFunc5<Enum, Float, Float, Float, Float, glMultiTexCoord4f>::Call(L);
-#else
   return WrapFunc5<Enum, Float, Float, Float, Float >::Call(L, glMultiTexCoord4f);
-#endif
 }
 static int lua_glMultiTexCoord4d(lua_State *L) {
-#ifndef LUAGL_FUNC_AS_ARG
-  return WrapFunc5<Enum, Double, Double, Double, Double, glMultiTexCoord4d>::Call(L);
-#else
   return WrapFunc5<Enum, Double, Double, Double, Double >::Call(L, glMultiTexCoord4d);
-#endif
 }
 static int lua_glMultiTexCoord4sv(lua_State *L) {
-#ifndef LUAGL_FUNC_AS_ARG
-  return WrapFunc2<Enum, ConstArray<Short>, glMultiTexCoord4sv>::Call(L);
-#else
-  return WrapFunc2<Enum, ConstArray<Short> >::Call(L, glMultiTexCoord4sv);
-#endif
+  return WrapFunc2<Enum, ConstArrayN<Short, 4> >::Call(L, glMultiTexCoord4sv);
 }
 static int lua_glMultiTexCoord4iv(lua_State *L) {
-#ifndef LUAGL_FUNC_AS_ARG
-  return WrapFunc2<Enum, ConstArray<Int>, glMultiTexCoord4iv>::Call(L);
-#else
-  return WrapFunc2<Enum, ConstArray<Int> >::Call(L, glMultiTexCoord4iv);
-#endif
+  return WrapFunc2<Enum, ConstArrayN<Int, 4> >::Call(L, glMultiTexCoord4iv);
 }
 static int lua_glMultiTexCoord4fv(lua_State *L) {
-#ifndef LUAGL_FUNC_AS_ARG
-  return WrapFunc2<Enum, ConstArray<Float>, glMultiTexCoord4fv>::Call(L);
-#else
-  return WrapFunc2<Enum, ConstArray<Float> >::Call(L, glMultiTexCoord4fv);
-#endif
+  return WrapFunc2<Enum, ConstArrayN<Float, 4> >::Call(L, glMultiTexCoord4fv);
 }
 static int lua_glMultiTexCoord4dv(lua_State *L) {
-#ifndef LUAGL_FUNC_AS_ARG
-  return WrapFunc2<Enum, ConstArray<Double>, glMultiTexCoord4dv>::Call(L);
-#else
-  return WrapFunc2<Enum, ConstArray<Double> >::Call(L, glMultiTexCoord4dv);
-#endif
+  return WrapFunc2<Enum, ConstArrayN<Double, 4> >::Call(L, glMultiTexCoord4dv);
 }
 
 static int lua_glSampleCoverage(lua_State *L) {
-#ifndef LUAGL_FUNC_AS_ARG
-  return WrapFunc2<Clampf, Boolean, glSampleCoverage>::Call(L);
-#else
   return WrapFunc2<Clampf, Boolean >::Call(L, glSampleCoverage);
-#endif
 }
 
 void Register_GL_1_3_Constants(LuaGL::ConstantMap &constants) {

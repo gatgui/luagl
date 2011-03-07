@@ -762,29 +762,22 @@ class LuaGLU {
     }
     
     static int lua_gluOrtho2D(lua_State *L) {
-#ifndef LUAGL_FUNC_AS_ARG
-      return WrapFunc4<Double, Double, Double, Double, gluOrtho2D>::Call(L);
-#else
       return WrapFunc4<Double, Double, Double, Double >::Call(L, gluOrtho2D);
-#endif
     }
     
     static int lua_gluPerspective(lua_State *L) {
-#ifndef LUAGL_FUNC_AS_ARG
-      return WrapFunc4<Double, Double, Double, Double, gluPerspective>::Call(L);
-#else
       return WrapFunc4<Double, Double, Double, Double >::Call(L, gluPerspective);
-#endif
     }
     
     static int lua_gluPickMatrix(lua_State *L) {
       CHECK_ARG_COUNT(L, 5);
+      GLint viewport[4];
       Double x(L, 1);
       Double y(L, 2);
       Double w(L, 3);
       Double h(L, 4);
-      Array1D<Int> viewport(L, 5);
-      if (viewport.size() != 4) {
+      Array1D<Int> tmp(viewport, 4);
+      if (tmp.fromLUA(L, 5)) {
         luaL_error(L, "glu.PickMatrix: invalid viewport");
       }
       gluPickMatrix(x, y, w, h, viewport);
@@ -792,28 +785,27 @@ class LuaGLU {
     }
     
     static int lua_gluLookAt(lua_State *L) {
-#ifndef LUAGL_FUNC_AS_ARG
-      return WrapFunc9<Double, Double, Double, Double, Double, Double, Double, Double, Double, gluLookAt>::Call(L);
-#else
       return WrapFunc9<Double, Double, Double, Double, Double, Double, Double, Double, Double >::Call(L, gluLookAt);
-#endif
     }
     
     static int lua_gluProject(lua_State *L) {
       CHECK_ARG_COUNT(L, 6);
+      GLdouble model[16];
+      GLdouble proj[16];
+      GLint viewport[4];
       Double ox(L, 1);
       Double oy(L, 2);
       Double oz(L, 3);
-      FlatArray2D<Double> model(L, 4, ROW_MAJOR, COLUMN_MAJOR);
-      if (model.numRows() != 4 || model.numColumns() != 4) {
+      Array1D<Double> tmp0(model, 16);
+      Array1D<Double> tmp1(proj, 16);
+      Array1D<Int> tmp2(viewport, 4);
+      if (!tmp0.fromLUA(L, 4)) {
         luaL_error(L, "glu.Project: invalid model matrix");
       }
-      FlatArray2D<Double> proj(L, 5, ROW_MAJOR, COLUMN_MAJOR);
-      if (proj.numRows() != 4 || proj.numColumns() != 4) {
+      if (!tmp1.fromLUA(L, 5)) {
         luaL_error(L, "glu.Project: invalid proj matrix");
       }
-      Array1D<Int> viewport(L, 6);
-      if (viewport.size() != 4) {
+      if (!tmp2.fromLUA(L, 6)) {
         luaL_error(L, "glu.Project: invalid viewport");
       }
       GLdouble w[3];
@@ -828,19 +820,22 @@ class LuaGLU {
     
     static int lua_gluUnProject(lua_State *L) {
       CHECK_ARG_COUNT(L, 6);
+      GLdouble model[16];
+      GLdouble proj[16];
+      GLint viewport[4];
       Double wx(L, 1);
       Double wy(L, 2);
       Double wz(L, 3);
-      FlatArray2D<Double> model(L, 4, ROW_MAJOR, COLUMN_MAJOR);
-      if (model.numRows() != 4 || model.numColumns() != 4) {
+      Array1D<Double> tmp0(model, 16);
+      Array1D<Double> tmp1(proj, 16);
+      Array1D<Int> tmp2(viewport, 4);
+      if (!tmp0.fromLUA(L, 4)) {
         luaL_error(L, "glu.UnProject: invalid model matrix");
       }
-      FlatArray2D<Double> proj(L, 5, ROW_MAJOR, COLUMN_MAJOR);
-      if (proj.numRows() != 4 || proj.numColumns() != 4) {
+      if (!tmp1.fromLUA(L, 5)) {
         luaL_error(L, "glu.UnProject: invalid proj matrix");
       }
-      Array1D<Int> viewport(L, 6);
-      if (viewport.size() != 4) {
+      if (!tmp2.fromLUA(L, 6)) {
         luaL_error(L, "glu.UnProject: invalid viewport");
       }
       GLdouble o[3];
@@ -909,91 +904,55 @@ class LuaGLU {
     static int lua_gluDeleteQuadric(lua_State *L) {
       Quadric q(L, 1);
       Instance().delQuadricCallback(L, q);
-#ifndef LUAGL_FUNC_AS_ARG
-      return WrapFunc1<Quadric, gluDeleteQuadric>::Call(L);
-#else
       return WrapFunc1<Quadric >::Call(L, gluDeleteQuadric);
-#endif
     }
 
     static int lua_gluQuadricNormals(lua_State *L) {
       Quadric q(L, 1);
       Instance().setCurrentQuadric(q);
-#ifndef LUAGL_FUNC_AS_ARG
-      return WrapFunc2<Quadric, Enum, gluQuadricNormals>::Call(L);
-#else
       return WrapFunc2<Quadric, Enum >::Call(L, gluQuadricNormals);
-#endif
     }
     
     static int lua_gluQuadricTexture(lua_State *L) {
       Quadric q(L, 1);
       Instance().setCurrentQuadric(q);
-#ifndef LUAGL_FUNC_AS_ARG
-      return WrapFunc2<Quadric, Boolean, gluQuadricTexture>::Call(L);
-#else
       return WrapFunc2<Quadric, Boolean >::Call(L, gluQuadricTexture);
-#endif
     }
     
     static int lua_gluQuadricOrientation(lua_State *L) {
       Quadric q(L, 1);
       Instance().setCurrentQuadric(q);
-#ifndef LUAGL_FUNC_AS_ARG
-      return WrapFunc2<Quadric, Enum, gluQuadricOrientation>::Call(L);
-#else
       return WrapFunc2<Quadric, Enum >::Call(L, gluQuadricOrientation);
-#endif
     }
     
     static int lua_gluQuadricDrawStyle(lua_State *L) {
       Quadric q(L, 1);
       Instance().setCurrentQuadric(q);
-#ifndef LUAGL_FUNC_AS_ARG
-      return WrapFunc2<Quadric, Enum, gluQuadricDrawStyle>::Call(L);
-#else
       return WrapFunc2<Quadric, Enum >::Call(L, gluQuadricDrawStyle);
-#endif
     }
     
     static int lua_gluCylinder(lua_State *L) {
       Quadric q(L, 1);
       Instance().setCurrentQuadric(q);
-#ifndef LUAGL_FUNC_AS_ARG
-      return WrapFunc6<Quadric, Double, Double, Double, Int, Int, gluCylinder>::Call(L);
-#else
       return WrapFunc6<Quadric, Double, Double, Double, Int, Int >::Call(L, gluCylinder);
-#endif
     }
     
     static int lua_gluDisk(lua_State *L) {
       Quadric q(L, 1);
       Instance().setCurrentQuadric(q);
-#ifndef LUAGL_FUNC_AS_ARG
-      return WrapFunc5<Quadric, Double, Double, Int, Int, gluDisk>::Call(L);
-#else
       return WrapFunc5<Quadric, Double, Double, Int, Int >::Call(L, gluDisk);
-#endif
     }
     
     static int lua_gluPartialDisk(lua_State *L) {
       Quadric q(L, 1);
       Instance().setCurrentQuadric(q);
-#ifndef LUAGL_FUNC_AS_ARG
-      return WrapFunc7<Quadric, Double, Double, Int, Int, Double, Double, gluPartialDisk>::Call(L);
-#else
       return WrapFunc7<Quadric, Double, Double, Int, Int, Double, Double >::Call(L, gluPartialDisk);
-#endif
     }
     
     static int lua_gluSphere(lua_State *L) {
       Quadric q(L, 1);
       Instance().setCurrentQuadric(q);
-#ifndef LUAGL_FUNC_AS_ARG
-      return WrapFunc4<Quadric, Double, Int, Int, gluSphere>::Call(L);
-#else
       return WrapFunc4<Quadric, Double, Int, Int >::Call(L, gluSphere);
-#endif
     }
     
     // Tesselator
@@ -1016,11 +975,7 @@ class LuaGLU {
       Instance().delAllTesselatorCallbacks(L, t);
       lua_pushnil(L);
       Instance().setTesselatorPolygonData(L, t, lua_gettop(L));
-#ifndef LUAGL_FUNC_AS_ARG
-      return WrapFunc1<Tess, gluDeleteTess>::Call(L);
-#else
       return WrapFunc1<Tess >::Call(L, gluDeleteTess);
-#endif
     }
     
     static int lua_gluTessBeginPolygon(lua_State *L) {
@@ -1035,39 +990,28 @@ class LuaGLU {
     static int lua_gluTessEndPolygon(lua_State *L) {
       Tess t(L, 1);
       Instance().setCurrentTesselator(t);
-#ifndef LUAGL_FUNC_AS_ARG
-      return WrapFunc1<Tess, gluTessEndPolygon>::Call(L);
-#else
       return WrapFunc1<Tess >::Call(L, gluTessEndPolygon);
-#endif
     }
   
     static int lua_gluTessBeginContour(lua_State *L) {
       Tess t(L, 1);
       Instance().setCurrentTesselator(t);
       Instance().clearTessContourVertices(L);
-#ifndef LUAGL_FUNC_AS_ARG
-      return WrapFunc1<Tess, gluTessBeginContour>::Call(L);
-#else
       return WrapFunc1<Tess >::Call(L, gluTessBeginContour);
-#endif
     }
     
     static int lua_gluTessEndContour(lua_State *L) {
       Tess t(L, 1);
       Instance().setCurrentTesselator(t);
-#ifndef LUAGL_FUNC_AS_ARG
-      return WrapFunc1<Tess, gluTessEndContour>::Call(L);
-#else
       return WrapFunc1<Tess >::Call(L, gluTessEndContour);
-#endif
     }
     
     static int lua_gluTessVertex(lua_State *L) {
+      GLdouble coords[3];
       CHECK_ARG_COUNT(L, 3);
       Tess t(L, 1);
-      Array1D<Double> coords(L, 2);
-      if (coords.size() != 3) {
+      Array1D<Double> tmp(coords, 3);
+      if (!tmp.fromLUA(L, 2)) {
         luaL_error(L, "glu.TessVertex: invalid coords");
       }
       size_t id = Instance().addTessContourVertex(L, 3);
@@ -1079,21 +1023,13 @@ class LuaGLU {
     static int lua_gluTessNormal(lua_State *L) {
       Tess t(L, 1);
       Instance().setCurrentTesselator(t);
-#ifndef LUAGL_FUNC_AS_ARG
-      return WrapFunc4<Tess, Double, Double, Double, gluTessNormal>::Call(L);
-#else
       return WrapFunc4<Tess, Double, Double, Double >::Call(L, gluTessNormal);
-#endif
     }
     
     static int lua_gluTessProperty(lua_State *L) {
       Tess t(L, 1);
       Instance().setCurrentTesselator(t);
-#ifndef LUAGL_FUNC_AS_ARG
-      return WrapFunc3<Tess, Enum, Double, gluTessProperty>::Call(L);
-#else
       return WrapFunc3<Tess, Enum, Double >::Call(L, gluTessProperty);
-#endif
     }
     
     static int lua_gluGetTessProperty(lua_State *L) {
@@ -1134,101 +1070,61 @@ class LuaGLU {
     static int lua_gluBeginSurface(lua_State *L) {
       Nurbs n(L, 1);
       Instance().setCurrentNurbs(n);
-#ifndef LUAGL_FUNC_AS_ARG
-      return WrapFunc1<Nurbs, gluBeginSurface>::Call(L);
-#else
       return WrapFunc1<Nurbs >::Call(L, gluBeginSurface);
-#endif
     }
     
     static int lua_gluEndSurface(lua_State *L) {
       Nurbs n(L, 1);
       Instance().setCurrentNurbs(n);
-#ifndef LUAGL_FUNC_AS_ARG
-      return WrapFunc1<Nurbs, gluEndSurface>::Call(L);
-#else
       return WrapFunc1<Nurbs >::Call(L, gluEndSurface);
-#endif
     }
     
     static int lua_gluBeginCurve(lua_State *L) {
       Nurbs n(L, 1);
       Instance().setCurrentNurbs(n);
-#ifndef LUAGL_FUNC_AS_ARG
-      return WrapFunc1<Nurbs, gluBeginCurve>::Call(L);
-#else
       return WrapFunc1<Nurbs >::Call(L, gluBeginCurve);
-#endif
     }
     
     static int lua_gluEndCurve(lua_State *L) {
       Nurbs n(L, 1);
       Instance().setCurrentNurbs(n);
-#ifndef LUAGL_FUNC_AS_ARG
-      return WrapFunc1<Nurbs, gluEndCurve>::Call(L);
-#else
       return WrapFunc1<Nurbs >::Call(L, gluEndCurve);
-#endif
     }
     
     static int lua_gluBeginTrim(lua_State *L) {
       Nurbs n(L, 1);
       Instance().setCurrentNurbs(n);
-#ifndef LUAGL_FUNC_AS_ARG
-      return WrapFunc1<Nurbs, gluBeginTrim>::Call(L);
-#else
       return WrapFunc1<Nurbs >::Call(L, gluBeginTrim);
-#endif
     }
     
     static int lua_gluEndTrim(lua_State *L) {
       Nurbs n(L, 1);
       Instance().setCurrentNurbs(n);
-#ifndef LUAGL_FUNC_AS_ARG
-      return WrapFunc1<Nurbs, gluEndTrim>::Call(L);
-#else
       return WrapFunc1<Nurbs >::Call(L, gluEndTrim);
-#endif
     }
     
     static int lua_gluPwlCurve(lua_State *L) {
       Nurbs n(L, 1);
       Instance().setCurrentNurbs(n);
-#ifndef LUAGL_FUNC_AS_ARG
-      return WrapFunc5<Nurbs, Int, TypedPtr<Float>, Int, Enum, gluPwlCurve>::Call(L);
-#else
       return WrapFunc5<Nurbs, Int, TypedPtr<Float>, Int, Enum >::Call(L, gluPwlCurve);
-#endif
     }
     
     static int lua_gluNurbsCurve(lua_State *L) {
       Nurbs n(L, 1);
       Instance().setCurrentNurbs(n);
-#ifndef LUAGL_FUNC_AS_ARG
-      return WrapFunc7<Nurbs, Int, TypedPtr<Float>, Int, TypedPtr<Float>, Int, Enum, gluNurbsCurve>::Call(L);
-#else
       return WrapFunc7<Nurbs, Int, TypedPtr<Float>, Int, TypedPtr<Float>, Int, Enum >::Call(L, gluNurbsCurve);
-#endif
     }
     
     static int lua_gluNurbsSurface(lua_State *L) {
       Nurbs n(L, 1);
       Instance().setCurrentNurbs(n);
-#ifndef LUAGL_FUNC_AS_ARG
-      return WrapFunc11<Nurbs, Int, TypedPtr<Float>, Int, TypedPtr<Float>, Int, Int, TypedPtr<Float>, Int, Int, Enum, gluNurbsSurface>::Call(L);
-#else
       return WrapFunc11<Nurbs, Int, TypedPtr<Float>, Int, TypedPtr<Float>, Int, Int, TypedPtr<Float>, Int, Int, Enum >::Call(L, gluNurbsSurface);
-#endif
     }
     
     static int lua_gluNurbsProperty(lua_State *L) {
       Nurbs n(L, 1);
       Instance().setCurrentNurbs(n);
-#ifndef LUAGL_FUNC_AS_ARG
-      return WrapFunc3<Nurbs, Enum, Float, gluNurbsProperty>::Call(L);
-#else
       return WrapFunc3<Nurbs, Enum, Float >::Call(L, gluNurbsProperty);
-#endif
     }
     
     static int lua_gluGetNurbsProperty(lua_State *L) {
@@ -1243,18 +1139,21 @@ class LuaGLU {
     }
     
     static int lua_gluLoadSamplingMatrices(lua_State *L) {
+      GLfloat model[16];
+      GLfloat proj[16];
+      GLint viewport[4];
       CHECK_ARG_COUNT(L, 4);
       Nurbs n(L, 1);
-      FlatArray2D<Float> model(L, 2, ROW_MAJOR, COLUMN_MAJOR);
-      if (model.numRows() != 4 || model.numColumns() != 4) {
+      Array1D<Float> tmp0(model, 16);
+      Array1D<Float> tmp1(proj, 16);
+      Array1D<Int> tmp2(viewport, 4);
+      if (!tmp0.fromLUA(L, 2)) {
         luaL_error(L, "glu.LoadSamplingMatrices: invalid modelview matrix");
       }
-      FlatArray2D<Float> proj(L, 3, ROW_MAJOR, COLUMN_MAJOR);
-      if (proj.numRows() != 4 || proj.numColumns() != 4) {
+      if (!tmp1.fromLUA(L, 3)) {
         luaL_error(L, "glu.LoadSamplingMatrices: invalid projection matrix");
       }
-      Array1D<Int> viewport(L, 4);
-      if (viewport.size() != 4) {
+      if (!tmp2.fromLUA(L, 4)) {
         luaL_error(L, "glu.LoadSamplingMatrices: invalid viewport");
       }
       gluLoadSamplingMatrices(n, model, proj, viewport);
