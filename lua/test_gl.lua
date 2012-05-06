@@ -118,8 +118,9 @@ function drawMesh()
   else
     gl.Begin(gl.QUADS)
     for e in mesh:elements() do
-      gl.MultiTexCoord2f(gl.TEXTURE0, e.texcoord.s, e.texcoord.t);
+      gl.MultiTexCoord2f(gl.TEXTURE0, e.texcoord.s, e.texcoord.t)
       gl.Vertex3fv(e.position)
+      --gl.Vertex3f(e.position.x, e.position.y, e.position.z)
     end
     gl.End()
   end
@@ -237,8 +238,8 @@ function printMatrix(m)
 end
 
 function initGL()
-	gl.Init()
-	print("OpenGL version: " .. tostring(gl.version))
+  gl.Init()
+  print("OpenGL version: " .. tostring(gl.version))
   gl.ClearColor(0, 0, 0, 1)
   gl.ClearDepth(1)
   gl.DepthFunc(gl.LESS)

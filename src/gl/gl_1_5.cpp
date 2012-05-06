@@ -26,57 +26,41 @@ USA.
 #include "wrap.h"
 
 static int lua_glBeginQuery(lua_State *L) {
-#ifndef LUAGL_FUNC_AS_ARG
-  return WrapFunc2<Enum, Uint, glBeginQuery>::Call(L);
-#else
   return WrapFunc2<Enum, Uint >::Call(L, glBeginQuery);
-#endif
 }
 
 static int lua_glBindBuffer(lua_State *L) {
-#ifndef LUAGL_FUNC_AS_ARG
-  return WrapFunc2<Enum, Uint, glBindBuffer>::Call(L);
-#else
   return WrapFunc2<Enum, Uint >::Call(L, glBindBuffer);
-#endif
 }
 
 static int lua_glBufferData(lua_State *L) {
-#ifndef LUAGL_FUNC_AS_ARG
-  return WrapFunc4<Enum, Sizeiptr, ConstPtr, Enum, glBufferData>::Call(L);
-#else
   return WrapFunc4<Enum, Sizeiptr, ConstPtr, Enum >::Call(L, glBufferData);
-#endif
 }
 
 static int lua_glBufferSubData(lua_State *L) {
-#ifndef LUAGL_FUNC_AS_ARG
-  return WrapFunc4<Enum, Intptr, Sizeiptr, ConstPtr, glBufferSubData>::Call(L);
-#else
   return WrapFunc4<Enum, Intptr, Sizeiptr, ConstPtr >::Call(L, glBufferSubData);
-#endif
 }
 
 static int lua_glDeleteBuffers(lua_State *L) {
   CHECK_ARG_COUNT(L, 1);
-  Array1D<Uint> buffers(L, 1);
-  glDeleteBuffers(buffers.size(), buffers);
+  Array1D<Uint> buffers;
+  if (buffers.fromLUA(L, 1)) {
+    glDeleteBuffers(buffers.size(), buffers);
+  }
   return 0;
 }
 
 static int lua_glDeleteQueries(lua_State *L) {
   CHECK_ARG_COUNT(L, 1);
-  Array1D<Uint> queries(L, 1);
-  glDeleteQueries(queries.size(), queries);
+  Array1D<Uint> queries;
+  if (queries.fromLUA(L, 1)) {
+    glDeleteQueries(queries.size(), queries);
+  }
   return 0;
 }
 
 static int lua_glEndQuery(lua_State *L) {
-#ifndef LUAGL_FUNC_AS_ARG
-  return WrapFunc1<Enum, glEndQuery>::Call(L);
-#else
   return WrapFunc1<Enum >::Call(L, glEndQuery);
-#endif
 }
 
 static int lua_glGenBuffers(lua_State *L) {
@@ -128,11 +112,7 @@ static int lua_glGetBufferPointer(lua_State *L) {
 }
 
 static int lua_glGetBufferSubData(lua_State *L) {
-#ifndef LUAGL_FUNC_AS_ARG
-  return WrapFunc4<Enum, Intptr, Sizeiptr, Ptr, glGetBufferSubData>::Call(L);
-#else
   return WrapFunc4<Enum, Intptr, Sizeiptr, Ptr >::Call(L, glGetBufferSubData);
-#endif
 }
 
 static int lua_glIsBuffer(lua_State *L) {

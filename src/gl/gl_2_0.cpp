@@ -26,35 +26,19 @@ USA.
 #include "wrap.h"
 
 static int lua_glAttachShader(lua_State *L) {
-#ifndef LUAGL_FUNC_AS_ARG
-  return WrapFunc2<Uint, Uint, glAttachShader>::Call(L);
-#else
   return WrapFunc2<Uint, Uint >::Call(L, glAttachShader);
-#endif
 }
 
 static int lua_glBindAttribLocation(lua_State *L) {
-#ifndef LUAGL_FUNC_AS_ARG
-  return WrapFunc3<Uint, Uint, String, glBindAttribLocation>::Call(L);
-#else
   return WrapFunc3<Uint, Uint, String >::Call(L, glBindAttribLocation);
-#endif
 }
 
 static int lua_glBlendEquationSeparate(lua_State *L) {
-#ifndef LUAGL_FUNC_AS_ARG
-  return WrapFunc2<Enum, Enum, glBlendEquationSeparate>::Call(L);
-#else
   return WrapFunc2<Enum, Enum >::Call(L, glBlendEquationSeparate);
-#endif
 }
 
 static int lua_glCompileShader(lua_State *L) {
-#ifndef LUAGL_FUNC_AS_ARG
-  return WrapFunc1<Uint, glCompileShader>::Call(L);
-#else
   return WrapFunc1<Uint >::Call(L, glCompileShader);
-#endif
 }
 
 static int lua_glCreateProgram(lua_State *L) {
@@ -71,50 +55,32 @@ static int lua_glCreateShader(lua_State *L) {
 }
 
 static int lua_glDeleteProgram(lua_State *L) {
-#ifndef LUAGL_FUNC_AS_ARG
-  return WrapFunc1<Uint, glDeleteProgram>::Call(L);
-#else
   return WrapFunc1<Uint >::Call(L, glDeleteProgram);
-#endif
 }
 
 static int lua_glDeleteShader(lua_State *L) {
-#ifndef LUAGL_FUNC_AS_ARG
-  return WrapFunc1<Uint, glDeleteShader>::Call(L);
-#else
   return WrapFunc1<Uint >::Call(L, glDeleteShader);
-#endif
 }
 
 static int lua_glDetachShader(lua_State *L) {
-#ifndef LUAGL_FUNC_AS_ARG
-  return WrapFunc2<Uint, Uint, glDetachShader>::Call(L);
-#else
   return WrapFunc2<Uint, Uint >::Call(L, glDetachShader);
-#endif
 }
 
 static int lua_glDisableVertexAttribArray(lua_State *L) {
-#ifndef LUAGL_FUNC_AS_ARG
-  return WrapFunc1<Uint, glDisableVertexAttribArray>::Call(L);
-#else
   return WrapFunc1<Uint >::Call(L, glDisableVertexAttribArray);
-#endif
 }
 
 static int lua_glDrawBuffers(lua_State *L) {
   CHECK_ARG_COUNT(L, 1);
-  Array1D<Enum> buffers(L, 1);
-  glDrawBuffers(buffers.size(), buffers);
+  Array1D<Enum> buffers;
+  if (buffers.fromLUA(L, 1)) {
+    glDrawBuffers(buffers.size(), buffers);
+  }
   return 0;
 }
 
 static int lua_glEnableVertexAttribArray(lua_State *L) {
-#ifndef LUAGL_FUNC_AS_ARG
-  return WrapFunc1<Uint, glEnableVertexAttribArray>::Call(L);
-#else
   return WrapFunc1<Uint >::Call(L, glEnableVertexAttribArray);
-#endif
 }
 
 static int lua_glGetActiveAttrib(lua_State *L) {
@@ -278,11 +244,7 @@ static int lua_glIsShader(lua_State *L) {
 }
 
 static int lua_glLinkProgram(lua_State *L) {
-#ifndef LUAGL_FUNC_AS_ARG
-  return WrapFunc1<Uint, glLinkProgram>::Call(L);
-#else
   return WrapFunc1<Uint >::Call(L, glLinkProgram);
-#endif
 }
 
 static int lua_glGetUniform(lua_State *L) {
@@ -420,427 +382,197 @@ static int lua_glGetVertexAttrib(lua_State *L) {
 static int lua_glShaderSource(lua_State *L) {
   CHECK_ARG_COUNT(L, 2);
   Uint shader(L, 1);
-  Array1D<String> strings(L, 2);
-  glShaderSource(shader, strings.size(), strings, 0);
+  Array1D<String> strings;
+  if (strings.fromLUA(L, 2)) {
+    glShaderSource(shader, strings.size(), strings, 0);
+  }
   return 0;
 }
 
 static int lua_glStencilFuncSeparate(lua_State *L) {
-#ifndef LUAGL_FUNC_AS_ARG
-  return WrapFunc4<Enum, Enum, Int, Uint, glStencilFuncSeparate>::Call(L);
-#else
   return WrapFunc4<Enum, Enum, Int, Uint >::Call(L, glStencilFuncSeparate);
-#endif
 }
 
 static int lua_glStencilMaskSeparate(lua_State *L) {
-#ifndef LUAGL_FUNC_AS_ARG
-  return WrapFunc2<Enum, Uint, glStencilMaskSeparate>::Call(L);
-#else
   return WrapFunc2<Enum, Uint >::Call(L, glStencilMaskSeparate);
-#endif
 }
 
 static int lua_glStencilOpSeparate(lua_State *L) {
-#ifndef LUAGL_FUNC_AS_ARG
-  return WrapFunc4<Enum, Enum, Enum, Enum, glStencilOpSeparate>::Call(L);
-#else
   return WrapFunc4<Enum, Enum, Enum, Enum >::Call(L, glStencilOpSeparate);
-#endif
 }
 
 static int lua_glUniform1f(lua_State *L) {
-#ifndef LUAGL_FUNC_AS_ARG
-  return WrapFunc2<Int, Float, glUniform1f>::Call(L);
-#else
   return WrapFunc2<Int, Float >::Call(L, glUniform1f);
-#endif
 }
 static int lua_glUniform2f(lua_State *L) {
-#ifndef LUAGL_FUNC_AS_ARG
-  return WrapFunc3<Int, Float, Float, glUniform2f>::Call(L);
-#else
   return WrapFunc3<Int, Float, Float >::Call(L, glUniform2f);
-#endif
 }
 static int lua_glUniform3f(lua_State *L) {
-#ifndef LUAGL_FUNC_AS_ARG
-  return WrapFunc4<Int, Float, Float, Float, glUniform3f>::Call(L);
-#else
   return WrapFunc4<Int, Float, Float, Float >::Call(L, glUniform3f);
-#endif
 }
 static int lua_glUniform4f(lua_State *L) {
-#ifndef LUAGL_FUNC_AS_ARG
-  return WrapFunc5<Int, Float, Float, Float, Float, glUniform4f>::Call(L);
-#else
   return WrapFunc5<Int, Float, Float, Float, Float >::Call(L, glUniform4f);
-#endif
 }
 static int lua_glUniform1i(lua_State *L) {
-#ifndef LUAGL_FUNC_AS_ARG
-  return WrapFunc2<Int, Int, glUniform1i>::Call(L);
-#else
   return WrapFunc2<Int, Int >::Call(L, glUniform1i);
-#endif
 }
 static int lua_glUniform2i(lua_State *L) {
-#ifndef LUAGL_FUNC_AS_ARG
-  return WrapFunc3<Int, Int, Int, glUniform2i>::Call(L);
-#else
   return WrapFunc3<Int, Int, Int >::Call(L, glUniform2i);
-#endif
 }
 static int lua_glUniform3i(lua_State *L) {
-#ifndef LUAGL_FUNC_AS_ARG
-  return WrapFunc4<Int, Int, Int, Int, glUniform3i>::Call(L);
-#else
   return WrapFunc4<Int, Int, Int, Int >::Call(L, glUniform3i);
-#endif
 }
 static int lua_glUniform4i(lua_State *L) {
-#ifndef LUAGL_FUNC_AS_ARG
-  return WrapFunc5<Int, Int, Int, Int, Int, glUniform4i>::Call(L);
-#else
   return WrapFunc5<Int, Int, Int, Int, Int >::Call(L, glUniform4i);
-#endif
 }
 static int lua_glUniform1iv(lua_State *L) {
-#ifndef LUAGL_FUNC_AS_ARG
-  return WrapFunc3<Int, Sizei, ConstArray<Int>, glUniform1iv>::Call(L);
-#else
   return WrapFunc3<Int, Sizei, ConstArray<Int> >::Call(L, glUniform1iv);
-#endif
 }
 static int lua_glUniform2iv(lua_State *L) {
-#ifndef LUAGL_FUNC_AS_ARG
-  return WrapFunc3<Int, Sizei, ConstArray<Int>, glUniform2iv>::Call(L);
-#else
   return WrapFunc3<Int, Sizei, ConstArray<Int> >::Call(L, glUniform2iv);
-#endif
 }
 static int lua_glUniform3iv(lua_State *L) {
-#ifndef LUAGL_FUNC_AS_ARG
-  return WrapFunc3<Int, Sizei, ConstArray<Int>, glUniform3iv>::Call(L);
-#else
   return WrapFunc3<Int, Sizei, ConstArray<Int> >::Call(L, glUniform3iv);
-#endif
 }
 static int lua_glUniform4iv(lua_State *L) {
-#ifndef LUAGL_FUNC_AS_ARG
-  return WrapFunc3<Int, Sizei, ConstArray<Int>, glUniform4iv>::Call(L);
-#else
   return WrapFunc3<Int, Sizei, ConstArray<Int> >::Call(L, glUniform4iv);
-#endif
 }
 static int lua_glUniform1fv(lua_State *L) {
-#ifndef LUAGL_FUNC_AS_ARG
-  return WrapFunc3<Int, Sizei, ConstArray<Float>, glUniform1fv>::Call(L);
-#else
   return WrapFunc3<Int, Sizei, ConstArray<Float> >::Call(L, glUniform1fv);
-#endif
 }
 static int lua_glUniform2fv(lua_State *L) {
-#ifndef LUAGL_FUNC_AS_ARG
-  return WrapFunc3<Int, Sizei, ConstArray<Float>, glUniform2fv>::Call(L);
-#else
   return WrapFunc3<Int, Sizei, ConstArray<Float> >::Call(L, glUniform2fv);
-#endif
 }
 static int lua_glUniform3fv(lua_State *L) {
-#ifndef LUAGL_FUNC_AS_ARG
-  return WrapFunc3<Int, Sizei, ConstArray<Float>, glUniform3fv>::Call(L);
-#else
   return WrapFunc3<Int, Sizei, ConstArray<Float> >::Call(L, glUniform3fv);
-#endif
 }
 static int lua_glUniform4fv(lua_State *L) {
-#ifndef LUAGL_FUNC_AS_ARG
-  return WrapFunc3<Int, Sizei, ConstArray<Float>, glUniform4fv>::Call(L);
-#else
   return WrapFunc3<Int, Sizei, ConstArray<Float> >::Call(L, glUniform4fv);
-#endif
 }
 
 static int lua_glUniformMatrix2fv(lua_State *L) {
-#ifndef LUAGL_FUNC_AS_ARG
-  return WrapFunc4<Int, Sizei, Boolean, ConstArray<Float>, glUniformMatrix2fv>::Call(L);
-#else
   return WrapFunc4<Int, Sizei, Boolean, ConstArray<Float> >::Call(L, glUniformMatrix2fv);
-#endif
 }
 static int lua_glUniformMatrix3fv(lua_State *L) {
-#ifndef LUAGL_FUNC_AS_ARG
-  return WrapFunc4<Int, Sizei, Boolean, ConstArray<Float>, glUniformMatrix3fv>::Call(L);
-#else
   return WrapFunc4<Int, Sizei, Boolean, ConstArray<Float> >::Call(L, glUniformMatrix3fv);
-#endif
 }
 static int lua_glUniformMatrix4fv(lua_State *L) {
-#ifndef LUAGL_FUNC_AS_ARG
-  return WrapFunc4<Int, Sizei, Boolean, ConstArray<Float>, glUniformMatrix4fv>::Call(L);
-#else
   return WrapFunc4<Int, Sizei, Boolean, ConstArray<Float> >::Call(L, glUniformMatrix4fv);
-#endif
 }
 
 static int lua_glUseProgram(lua_State *L) {
-#ifndef LUAGL_FUNC_AS_ARG
-  return WrapFunc1<Uint, glUseProgram>::Call(L);
-#else
   return WrapFunc1<Uint >::Call(L, glUseProgram);
-#endif
 }
 
 static int lua_glValidateProgram(lua_State *L) {
-#ifndef LUAGL_FUNC_AS_ARG
-  return WrapFunc1<Uint, glValidateProgram>::Call(L);
-#else
   return WrapFunc1<Uint >::Call(L, glValidateProgram);
-#endif
 }
 
 static int lua_glVertexAttrib1d(lua_State *L) {
-#ifndef LUAGL_FUNC_AS_ARG
-  return WrapFunc2<Uint, Double, glVertexAttrib1d>::Call(L);
-#else
-  return WrapFunc2<Uint, Double >::Call(L, glVertexAttrib1d);
-#endif
+  return WrapFunc2<Uint, Double>::Call(L, glVertexAttrib1d);
 }
 static int lua_glVertexAttrib1f(lua_State *L) {
-#ifndef LUAGL_FUNC_AS_ARG
-  return WrapFunc2<Uint, Float, glVertexAttrib1f>::Call(L);
-#else
   return WrapFunc2<Uint, Float >::Call(L, glVertexAttrib1f);
-#endif
 }
 static int lua_glVertexAttrib1s(lua_State *L) {
-#ifndef LUAGL_FUNC_AS_ARG
-  return WrapFunc2<Uint, Short, glVertexAttrib1s>::Call(L);
-#else
   return WrapFunc2<Uint, Short >::Call(L, glVertexAttrib1s);
-#endif
 }
 
 static int lua_glVertexAttrib2d(lua_State *L) {
-#ifndef LUAGL_FUNC_AS_ARG
-  return WrapFunc3<Uint, Double, Double, glVertexAttrib2d>::Call(L);
-#else
   return WrapFunc3<Uint, Double, Double >::Call(L, glVertexAttrib2d);
-#endif
 }
 static int lua_glVertexAttrib2f(lua_State *L) {
-#ifndef LUAGL_FUNC_AS_ARG
-  return WrapFunc3<Uint, Float, Float, glVertexAttrib2f>::Call(L);
-#else
   return WrapFunc3<Uint, Float, Float >::Call(L, glVertexAttrib2f);
-#endif
 }
 static int lua_glVertexAttrib2s(lua_State *L) {
-#ifndef LUAGL_FUNC_AS_ARG
-  return WrapFunc3<Uint, Short, Short, glVertexAttrib2s>::Call(L);
-#else
   return WrapFunc3<Uint, Short, Short >::Call(L, glVertexAttrib2s);
-#endif
 }
 static int lua_glVertexAttrib2dv(lua_State *L) {
-#ifndef LUAGL_FUNC_AS_ARG
-  return WrapFunc2<Uint, ConstArray<Double>, glVertexAttrib2dv>::Call(L);
-#else
-  return WrapFunc2<Uint, ConstArray<Double> >::Call(L, glVertexAttrib2dv);
-#endif
+  return WrapFunc2<Uint, ConstArrayN<Double, 2> >::Call(L, glVertexAttrib2dv);
 }
 static int lua_glVertexAttrib2fv(lua_State *L) {
-#ifndef LUAGL_FUNC_AS_ARG
-  return WrapFunc2<Uint, ConstArray<Float>, glVertexAttrib2fv>::Call(L);
-#else
-  return WrapFunc2<Uint, ConstArray<Float> >::Call(L, glVertexAttrib2fv);
-#endif
+  return WrapFunc2<Uint, ConstArrayN<Float, 2> >::Call(L, glVertexAttrib2fv);
 }
 static int lua_glVertexAttrib2sv(lua_State *L) {
-#ifndef LUAGL_FUNC_AS_ARG
-  return WrapFunc2<Uint, ConstArray<Short>, glVertexAttrib2sv>::Call(L);
-#else
-  return WrapFunc2<Uint, ConstArray<Short> >::Call(L, glVertexAttrib2sv);
-#endif
+  return WrapFunc2<Uint, ConstArrayN<Short, 2> >::Call(L, glVertexAttrib2sv);
 }
 
 static int lua_glVertexAttrib3d(lua_State *L) {
-#ifndef LUAGL_FUNC_AS_ARG
-  return WrapFunc4<Uint, Double, Double, Double, glVertexAttrib3d>::Call(L);
-#else
   return WrapFunc4<Uint, Double, Double, Double >::Call(L, glVertexAttrib3d);
-#endif
 }
 static int lua_glVertexAttrib3f(lua_State *L) {
-#ifndef LUAGL_FUNC_AS_ARG
-  return WrapFunc4<Uint, Float, Float, Float, glVertexAttrib3f>::Call(L);
-#else
   return WrapFunc4<Uint, Float, Float, Float >::Call(L, glVertexAttrib3f);
-#endif
 }
 static int lua_glVertexAttrib3s(lua_State *L) {
-#ifndef LUAGL_FUNC_AS_ARG
-  return WrapFunc4<Uint, Short, Short, Short, glVertexAttrib3s>::Call(L);
-#else
   return WrapFunc4<Uint, Short, Short, Short >::Call(L, glVertexAttrib3s);
-#endif
 }
 static int lua_glVertexAttrib3dv(lua_State *L) {
-#ifndef LUAGL_FUNC_AS_ARG
-  return WrapFunc2<Uint, ConstArray<Double>, glVertexAttrib3dv>::Call(L);
-#else
-  return WrapFunc2<Uint, ConstArray<Double> >::Call(L, glVertexAttrib3dv);
-#endif
+  return WrapFunc2<Uint, ConstArrayN<Double, 3> >::Call(L, glVertexAttrib3dv);
 }
 static int lua_glVertexAttrib3fv(lua_State *L) {
-#ifndef LUAGL_FUNC_AS_ARG
-  return WrapFunc2<Uint, ConstArray<Float>, glVertexAttrib3fv>::Call(L);
-#else
-  return WrapFunc2<Uint, ConstArray<Float> >::Call(L, glVertexAttrib3fv);
-#endif
+  return WrapFunc2<Uint, ConstArrayN<Float, 3> >::Call(L, glVertexAttrib3fv);
 }
 static int lua_glVertexAttrib3sv(lua_State *L) {
-#ifndef LUAGL_FUNC_AS_ARG
-  return WrapFunc2<Uint, ConstArray<Short>, glVertexAttrib3sv>::Call(L);
-#else
-  return WrapFunc2<Uint, ConstArray<Short> >::Call(L, glVertexAttrib3sv);
-#endif
+  return WrapFunc2<Uint, ConstArrayN<Short, 3> >::Call(L, glVertexAttrib3sv);
 }
 
 static int lua_glVertexAttrib4d(lua_State *L) {
-#ifndef LUAGL_FUNC_AS_ARG
-  return WrapFunc5<Uint, Double, Double, Double, Double, glVertexAttrib4d>::Call(L);
-#else
   return WrapFunc5<Uint, Double, Double, Double, Double >::Call(L, glVertexAttrib4d);
-#endif
 }
 static int lua_glVertexAttrib4f(lua_State *L) {
-#ifndef LUAGL_FUNC_AS_ARG
-  return WrapFunc5<Uint, Float, Float, Float, Float, glVertexAttrib4f>::Call(L);
-#else
   return WrapFunc5<Uint, Float, Float, Float, Float >::Call(L, glVertexAttrib4f);
-#endif
 }
 static int lua_glVertexAttrib4s(lua_State *L) {
-#ifndef LUAGL_FUNC_AS_ARG
-  return WrapFunc5<Uint, Short, Short, Short, Short, glVertexAttrib4s>::Call(L);
-#else
   return WrapFunc5<Uint, Short, Short, Short, Short >::Call(L, glVertexAttrib4s);
-#endif
 }
 static int lua_glVertexAttrib4Nub(lua_State *L) {
-#ifndef LUAGL_FUNC_AS_ARG
-  return WrapFunc5<Uint, Ubyte, Ubyte, Ubyte, Ubyte, glVertexAttrib4Nub>::Call(L);
-#else
   return WrapFunc5<Uint, Ubyte, Ubyte, Ubyte, Ubyte >::Call(L, glVertexAttrib4Nub);
-#endif
 }
 static int lua_glVertexAttrib4Nbv(lua_State *L) {
-#ifndef LUAGL_FUNC_AS_ARG
-  return WrapFunc2<Uint, ConstArray<Byte>, glVertexAttrib4Nbv>::Call(L);
-#else
-  return WrapFunc2<Uint, ConstArray<Byte> >::Call(L, glVertexAttrib4Nbv);
-#endif
+  return WrapFunc2<Uint, ConstArrayN<Byte, 4> >::Call(L, glVertexAttrib4Nbv);
 }
 static int lua_glVertexAttrib4Niv(lua_State *L) {
-#ifndef LUAGL_FUNC_AS_ARG
-  return WrapFunc2<Uint, ConstArray<Int>, glVertexAttrib4Niv>::Call(L);
-#else
-  return WrapFunc2<Uint, ConstArray<Int> >::Call(L, glVertexAttrib4Niv);
-#endif
+  return WrapFunc2<Uint, ConstArrayN<Int, 4> >::Call(L, glVertexAttrib4Niv);
 }
 static int lua_glVertexAttrib4Nsv(lua_State *L) {
-#ifndef LUAGL_FUNC_AS_ARG
-  return WrapFunc2<Uint, ConstArray<Short>, glVertexAttrib4Nsv>::Call(L);
-#else
-  return WrapFunc2<Uint, ConstArray<Short> >::Call(L, glVertexAttrib4Nsv);
-#endif
+  return WrapFunc2<Uint, ConstArrayN<Short, 4> >::Call(L, glVertexAttrib4Nsv);
 }
 static int lua_glVertexAttrib4Nubv(lua_State *L) {
-#ifndef LUAGL_FUNC_AS_ARG
-  return WrapFunc2<Uint, ConstArray<Ubyte>, glVertexAttrib4Nubv>::Call(L);
-#else
-  return WrapFunc2<Uint, ConstArray<Ubyte> >::Call(L, glVertexAttrib4Nubv);
-#endif
+  return WrapFunc2<Uint, ConstArrayN<Ubyte, 4> >::Call(L, glVertexAttrib4Nubv);
 }
 static int lua_glVertexAttrib4Nuiv(lua_State *L) {
-#ifndef LUAGL_FUNC_AS_ARG
-  return WrapFunc2<Uint, ConstArray<Uint>, glVertexAttrib4Nuiv>::Call(L);
-#else
-  return WrapFunc2<Uint, ConstArray<Uint> >::Call(L, glVertexAttrib4Nuiv);
-#endif
+  return WrapFunc2<Uint, ConstArrayN<Uint, 4> >::Call(L, glVertexAttrib4Nuiv);
 }
 static int lua_glVertexAttrib4Nusv(lua_State *L) {
-#ifndef LUAGL_FUNC_AS_ARG
-  return WrapFunc2<Uint, ConstArray<Ushort>, glVertexAttrib4Nusv>::Call(L);
-#else
-  return WrapFunc2<Uint, ConstArray<Ushort> >::Call(L, glVertexAttrib4Nusv);
-#endif
+  return WrapFunc2<Uint, ConstArrayN<Ushort, 4> >::Call(L, glVertexAttrib4Nusv);
 }
 static int lua_glVertexAttrib4bv(lua_State *L) {
-#ifndef LUAGL_FUNC_AS_ARG
-  return WrapFunc2<Uint, ConstArray<Byte>, glVertexAttrib4bv>::Call(L);
-#else
-  return WrapFunc2<Uint, ConstArray<Byte> >::Call(L, glVertexAttrib4bv);
-#endif
+  return WrapFunc2<Uint, ConstArrayN<Byte, 4> >::Call(L, glVertexAttrib4bv);
 }
 static int lua_glVertexAttrib4ubv(lua_State *L) {
-#ifndef LUAGL_FUNC_AS_ARG
-  return WrapFunc2<Uint, ConstArray<Ubyte>, glVertexAttrib4ubv>::Call(L);
-#else
-  return WrapFunc2<Uint, ConstArray<Ubyte> >::Call(L, glVertexAttrib4ubv);
-#endif
+  return WrapFunc2<Uint, ConstArrayN<Ubyte, 4> >::Call(L, glVertexAttrib4ubv);
 }
 static int lua_glVertexAttrib4sv(lua_State *L) {
-#ifndef LUAGL_FUNC_AS_ARG
-  return WrapFunc2<Uint, ConstArray<Short>, glVertexAttrib4sv>::Call(L);
-#else
-  return WrapFunc2<Uint, ConstArray<Short> >::Call(L, glVertexAttrib4sv);
-#endif
+  return WrapFunc2<Uint, ConstArrayN<Short, 4> >::Call(L, glVertexAttrib4sv);
 }
 static int lua_glVertexAttrib4usv(lua_State *L) {
-#ifndef LUAGL_FUNC_AS_ARG
-  return WrapFunc2<Uint, ConstArray<Ushort>, glVertexAttrib4usv>::Call(L);
-#else
-  return WrapFunc2<Uint, ConstArray<Ushort> >::Call(L, glVertexAttrib4usv);
-#endif
+  return WrapFunc2<Uint, ConstArrayN<Ushort, 4> >::Call(L, glVertexAttrib4usv);
 }
 static int lua_glVertexAttrib4iv(lua_State *L) {
-#ifndef LUAGL_FUNC_AS_ARG
-  return WrapFunc2<Uint, ConstArray<Int>, glVertexAttrib4iv>::Call(L);
-#else
-  return WrapFunc2<Uint, ConstArray<Int> >::Call(L, glVertexAttrib4iv);
-#endif
+  return WrapFunc2<Uint, ConstArrayN<Int, 4> >::Call(L, glVertexAttrib4iv);
 }
 static int lua_glVertexAttrib4uiv(lua_State *L) {
-#ifndef LUAGL_FUNC_AS_ARG
-  return WrapFunc2<Uint, ConstArray<Uint>, glVertexAttrib4uiv>::Call(L);
-#else
-  return WrapFunc2<Uint, ConstArray<Uint> >::Call(L, glVertexAttrib4uiv);
-#endif
+  return WrapFunc2<Uint, ConstArrayN<Uint, 4> >::Call(L, glVertexAttrib4uiv);
 }
 static int lua_glVertexAttrib4fv(lua_State *L) {
-#ifndef LUAGL_FUNC_AS_ARG
-  return WrapFunc2<Uint, ConstArray<Float>, glVertexAttrib4fv>::Call(L);
-#else
-  return WrapFunc2<Uint, ConstArray<Float> >::Call(L, glVertexAttrib4fv);
-#endif
+  return WrapFunc2<Uint, ConstArrayN<Float, 4> >::Call(L, glVertexAttrib4fv);
 }
 static int lua_glVertexAttrib4dv(lua_State *L) {
-#ifndef LUAGL_FUNC_AS_ARG
-  return WrapFunc2<Uint, ConstArray<Double>, glVertexAttrib4dv>::Call(L);
-#else
-  return WrapFunc2<Uint, ConstArray<Double> >::Call(L, glVertexAttrib4dv);
-#endif
+  return WrapFunc2<Uint, ConstArrayN<Double, 4> >::Call(L, glVertexAttrib4dv);
 }
 
 static int lua_glVertexAttribPointer(lua_State *L) {
-#ifndef LUAGL_FUNC_AS_ARG
-  return WrapFunc6<Uint, Int, Enum, Boolean, Sizei, ConstPtr, glVertexAttribPointer>::Call(L);
-#else
   return WrapFunc6<Uint, Int, Enum, Boolean, Sizei, ConstPtr >::Call(L, glVertexAttribPointer);
-#endif
 }
 
 

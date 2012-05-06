@@ -26,38 +26,19 @@ USA.
 #include "wrap.h"
 
 static int lua_glTexImage3D(lua_State *L) {
-#ifndef LUAGL_FUNC_AS_ARG
-  return WrapFunc10<Enum, Int, Int, Sizei, Sizei, Sizei, Int, Enum, Enum, ConstPtr,
-                    glTexImage3D>::Call(L);
-#else
   return WrapFunc10<Enum, Int, Int, Sizei, Sizei, Sizei, Int, Enum, Enum, ConstPtr>::Call(L, glTexImage3D);
-#endif
 }
 
 static int lua_glTexSubImage3D(lua_State *L) {
-#ifndef LUAGL_FUNC_AS_ARG
-  return WrapFunc11<Enum, Int, Int, Int, Int, Sizei, Sizei, Sizei, Enum, Enum, ConstPtr,
-                    glTexSubImage3D>::Call(L);
-#else
   return WrapFunc11<Enum, Int, Int, Int, Int, Sizei, Sizei, Sizei, Enum, Enum, ConstPtr>::Call(L, glTexSubImage3D);
-#endif
 }
 
 static int lua_glCopyTexSubImage3D(lua_State *L) {
-#ifndef LUAGL_FUNC_AS_ARG
-  return WrapFunc9<Enum, Int, Int, Int, Int, Int, Int, Sizei, Sizei,
-                   glCopyTexSubImage3D>::Call(L);
-#else
   return WrapFunc9<Enum, Int, Int, Int, Int, Int, Int, Sizei, Sizei>::Call(L, glCopyTexSubImage3D);
-#endif
 }
 
 static int lua_glDrawRangeElements(lua_State *L) {
-#ifndef LUAGL_FUNC_AS_ARG
-  return WrapFunc6<Enum, Uint, Uint, Sizei, Enum, ConstPtr, glDrawRangeElements>::Call(L);
-#else
   return WrapFunc6<Enum, Uint, Uint, Sizei, Enum, ConstPtr>::Call(L, glDrawRangeElements);
-#endif
 }
 
 void Register_GL_1_2_Constants(LuaGL::ConstantMap &constants) {

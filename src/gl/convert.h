@@ -172,6 +172,25 @@ struct Array {
   Array1D<U> value;
 };
 
+template <typename U, int dim>
+struct ArrayN {
+  typedef typename U::T* T;
+  inline ArrayN() {value = Array1D<U>(_cary, dim);}
+  inline ArrayN(lua_State *L, int arg) {value = Array1D<U>(_cary, dim); fromLUA(L, arg);}
+  inline ~ArrayN() {}
+  inline void fromLUA(lua_State *L, int arg) {
+    value.fromLUA(L, arg);
+  }
+  inline void toLUA(lua_State *L) {
+    value.toLUA(L);
+  }
+  inline operator T () {
+    return value;
+  }
+  Array1D<U> value;
+  typename U::T _cary[dim];
+};
+
 template <typename U>
 struct ConstArray {
   typedef const typename U::T* T;
@@ -188,6 +207,25 @@ struct ConstArray {
     return value;
   }
   Array1D<U> value;
+};
+
+template <typename U, int dim>
+struct ConstArrayN {
+  typedef const typename U::T* T;
+  inline ConstArrayN() {value = Array1D<U>(_cary, dim);}
+  inline ConstArrayN(lua_State *L, int arg) {value = Array1D<U>(_cary, dim); fromLUA(L, arg);}
+  inline ~ConstArrayN() {}
+  inline void fromLUA(lua_State *L, int arg) {
+    value.fromLUA(L, arg);
+  }
+  inline void toLUA(lua_State *L) {
+    value.toLUA(L);
+  }
+  inline operator T () const {
+    return value;
+  }
+  Array1D<U> value;
+  typename U::T _cary[dim];
 };
 
 #endif

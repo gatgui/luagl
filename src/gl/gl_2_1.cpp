@@ -26,46 +26,22 @@ USA.
 #include "wrap.h"
 
 static int lua_glUniformMatrix2x3fv(lua_State *L) {
-#ifndef LUAGL_FUNC_AS_ARG
-  return WrapFunc4<Int, Sizei, Boolean, ConstArray<Float>, glUniformMatrix2x3fv>::Call(L);
-#else
   return WrapFunc4<Int, Sizei, Boolean, ConstArray<Float> >::Call(L, glUniformMatrix2x3fv);
-#endif
 }
 static int lua_glUniformMatrix2x4fv(lua_State *L) {
-#ifndef LUAGL_FUNC_AS_ARG
-  return WrapFunc4<Int, Sizei, Boolean, ConstArray<Float>, glUniformMatrix2x4fv>::Call(L);
-#else
   return WrapFunc4<Int, Sizei, Boolean, ConstArray<Float> >::Call(L, glUniformMatrix2x4fv);
-#endif
 }
 static int lua_glUniformMatrix3x2fv(lua_State *L) {
-#ifndef LUAGL_FUNC_AS_ARG
-  return WrapFunc4<Int, Sizei, Boolean, ConstArray<Float>, glUniformMatrix3x2fv>::Call(L);
-#else
   return WrapFunc4<Int, Sizei, Boolean, ConstArray<Float> >::Call(L, glUniformMatrix3x2fv);
-#endif
 }
 static int lua_glUniformMatrix3x4fv(lua_State *L) {
-#ifndef LUAGL_FUNC_AS_ARG
-  return WrapFunc4<Int, Sizei, Boolean, ConstArray<Float>, glUniformMatrix3x4fv>::Call(L);
-#else
   return WrapFunc4<Int, Sizei, Boolean, ConstArray<Float> >::Call(L, glUniformMatrix3x4fv);
-#endif
 }
 static int lua_glUniformMatrix4x2fv(lua_State *L) {
-#ifndef LUAGL_FUNC_AS_ARG
-  return WrapFunc4<Int, Sizei, Boolean, ConstArray<Float>, glUniformMatrix4x2fv>::Call(L);
-#else
   return WrapFunc4<Int, Sizei, Boolean, ConstArray<Float> >::Call(L, glUniformMatrix4x2fv);
-#endif
 }
 static int lua_glUniformMatrix4x3fv(lua_State *L) {
-#ifndef LUAGL_FUNC_AS_ARG
-  return WrapFunc4<Int, Sizei, Boolean, ConstArray<Float>, glUniformMatrix4x3fv>::Call(L);
-#else
   return WrapFunc4<Int, Sizei, Boolean, ConstArray<Float> >::Call(L, glUniformMatrix4x3fv);
-#endif
 }
 
 void Register_GL_2_1_Constants(LuaGL::ConstantMap &constants) {

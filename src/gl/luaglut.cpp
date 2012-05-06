@@ -668,43 +668,23 @@ class LuaGLUT {
     }
 
     static int lua_glutInitDisplayMode(lua_State *L) {
-#ifndef LUAGL_FUNC_AS_ARG
-      return WrapFunc1<CUint, glutInitDisplayMode>::Call(L);
-#else
       return WrapFunc1<CUint >::Call(L, glutInitDisplayMode);
-#endif
     }
 
     static int lua_glutInitDisplayString(lua_State *L) {
-#ifndef LUAGL_FUNC_AS_ARG
-      return WrapFunc1<String, glutInitDisplayString>::Call(L);
-#else
       return WrapFunc1<String >::Call(L, glutInitDisplayString);
-#endif
     }
 
     static int lua_glutInitWindowPosition(lua_State *L) {
-#ifndef LUAGL_FUNC_AS_ARG
-      return WrapFunc2<CInt, CInt, glutInitWindowPosition>::Call(L);
-#else
       return WrapFunc2<CInt, CInt >::Call(L, glutInitWindowPosition);
-#endif
     }
 
     static int lua_glutInitWindowSize(lua_State *L) {
-#ifndef LUAGL_FUNC_AS_ARG
-      return WrapFunc2<CInt, CInt, glutInitWindowSize>::Call(L);
-#else
       return WrapFunc2<CInt, CInt >::Call(L, glutInitWindowSize);
-#endif
     }
 
     static int lua_glutMainLoop(lua_State *L) {
-#ifndef LUAGL_FUNC_AS_ARG
-      return WrapFunc0<glutMainLoop>::Call(L);
-#else
       return WrapFunc0::Call(L, glutMainLoop);
-#endif
     }
 
     static int lua_glutCreateWindow(lua_State *L) {
@@ -728,35 +708,19 @@ class LuaGLUT {
     }
 
     static int lua_glutDestroyWindow(lua_State *L) {
-#ifndef LUAGL_FUNC_AS_ARG
-      return WrapFunc1<CInt, glutDestroyWindow>::Call(L);
-#else
       return WrapFunc1<CInt >::Call(L, glutDestroyWindow);
-#endif
     }
 
     static int lua_glutPostRedisplay(lua_State *L) {
-#ifndef LUAGL_FUNC_AS_ARG
-      return WrapFunc0<glutPostRedisplay>::Call(L);
-#else
       return WrapFunc0::Call(L, glutPostRedisplay);
-#endif
     }
 
     static int lua_glutPostWindowRedisplay(lua_State *L) {
-#ifndef LUAGL_FUNC_AS_ARG
-      return WrapFunc1<CInt, glutPostWindowRedisplay>::Call(L);
-#else
       return WrapFunc1<CInt >::Call(L, glutPostWindowRedisplay);
-#endif
     }
 
     static int lua_glutSwapBuffers(lua_State *L) {
-#ifndef LUAGL_FUNC_AS_ARG
-      return WrapFunc0<glutSwapBuffers>::Call(L);
-#else
       return WrapFunc0::Call(L, glutSwapBuffers);
-#endif
     }
 
     static int lua_glutGetWindow(lua_State *L) {
@@ -767,163 +731,83 @@ class LuaGLUT {
     }
 
     static int lua_glutSetWindow(lua_State *L) {
-#ifndef LUAGL_FUNC_AS_ARG
-      return WrapFunc1<CInt, glutSetWindow>::Call(L);
-#else
       return WrapFunc1<CInt >::Call(L, glutSetWindow);
-#endif
     }
 
     static int lua_glutSetWindowTitle(lua_State *L) {
-#ifndef LUAGL_FUNC_AS_ARG
-      return WrapFunc1<String, glutSetWindowTitle>::Call(L);
-#else
       return WrapFunc1<String >::Call(L, glutSetWindowTitle);
-#endif
     }
 
     static int lua_glutSetIconTitle(lua_State *L) {
-#ifndef LUAGL_FUNC_AS_ARG
-      return WrapFunc1<String, glutSetIconTitle>::Call(L);
-#else
       return WrapFunc1<String >::Call(L, glutSetIconTitle);
-#endif
     }
 
     static int lua_glutPositionWindow(lua_State *L) {
-#ifndef LUAGL_FUNC_AS_ARG
-      return WrapFunc2<CInt, CInt, glutPositionWindow>::Call(L);
-#else
       return WrapFunc2<CInt, CInt >::Call(L, glutPositionWindow);
-#endif
     }
 
     static int lua_glutReshapeWindow(lua_State *L) {
-#ifndef LUAGL_FUNC_AS_ARG
-      return WrapFunc2<CInt, CInt, glutReshapeWindow>::Call(L);
-#else
       return WrapFunc2<CInt, CInt >::Call(L, glutReshapeWindow);
-#endif
     }
 
     static int lua_glutPopWindow(lua_State *L) {
-#ifndef LUAGL_FUNC_AS_ARG
-      return WrapFunc0<glutPopWindow>::Call(L);
-#else
       return WrapFunc0::Call(L, glutPopWindow);
-#endif
     }
 
     static int lua_glutPushWindow(lua_State *L) {
-#ifndef LUAGL_FUNC_AS_ARG
-      return WrapFunc0<glutPushWindow>::Call(L);
-#else
       return WrapFunc0::Call(L, glutPushWindow);
-#endif
     }
 
     static int lua_glutIconifyWindow(lua_State *L) {
-#ifndef LUAGL_FUNC_AS_ARG
-      return WrapFunc0<glutIconifyWindow>::Call(L);
-#else
       return WrapFunc0::Call(L, glutIconifyWindow);
-#endif
     }
     
     static int lua_glutShowWindow(lua_State *L) {
-#ifndef LUAGL_FUNC_AS_ARG
-      return WrapFunc0<glutShowWindow>::Call(L);
-#else
       return WrapFunc0::Call(L, glutShowWindow);
-#endif
     }
     
     static int lua_glutHideWindow(lua_State *L) {
-#ifndef LUAGL_FUNC_AS_ARG
-      return WrapFunc0<glutHideWindow>::Call(L);
-#else
       return WrapFunc0::Call(L, glutHideWindow);
-#endif
     }
     
     static int lua_glutFullScreen(lua_State *L) {
-#ifndef LUAGL_FUNC_AS_ARG
-      return WrapFunc0<glutFullScreen>::Call(L);
-#else
       return WrapFunc0::Call(L, glutFullScreen);
-#endif
     }
     
     static int lua_glutSetCursor(lua_State *L) {
-#ifndef LUAGL_FUNC_AS_ARG
-      return WrapFunc1<CInt, glutSetCursor>::Call(L);
-#else
       return WrapFunc1<CInt >::Call(L, glutSetCursor);
-#endif
     }
     
     static int lua_glutWarpPointer(lua_State *L) {
-#ifndef LUAGL_FUNC_AS_ARG
-      return WrapFunc2<CInt, CInt, glutWarpPointer>::Call(L);
-#else
       return WrapFunc2<CInt, CInt >::Call(L, glutWarpPointer);
-#endif
     }
     
     static int lua_glutEstablishOverlay(lua_State *L) {
-#ifndef LUAGL_FUNC_AS_ARG
-      return WrapFunc0<glutEstablishOverlay>::Call(L);
-#else
       return WrapFunc0::Call(L, glutEstablishOverlay);
-#endif
     }
     
     static int lua_glutRemoveOverlay(lua_State *L) {
-#ifndef LUAGL_FUNC_AS_ARG
-      return WrapFunc0<glutRemoveOverlay>::Call(L);
-#else
       return WrapFunc0::Call(L, glutRemoveOverlay);
-#endif
     }
     
     static int lua_glutUseLayer(lua_State *L) {
-#ifndef LUAGL_FUNC_AS_ARG
-      return WrapFunc1<Enum, glutUseLayer>::Call(L);
-#else
       return WrapFunc1<Enum >::Call(L, glutUseLayer);
-#endif
     }
     
     static int lua_glutPostOverlayRedisplay(lua_State *L) {
-#ifndef LUAGL_FUNC_AS_ARG
-      return WrapFunc0<glutPostOverlayRedisplay>::Call(L);
-#else
       return WrapFunc0::Call(L, glutPostOverlayRedisplay);
-#endif
     }
     
     static int lua_glutPostWindowOverlayRedisplay(lua_State *L) {
-#ifndef LUAGL_FUNC_AS_ARG
-      return WrapFunc1<CInt, glutPostWindowOverlayRedisplay>::Call(L);
-#else
       return WrapFunc1<CInt >::Call(L, glutPostWindowOverlayRedisplay);
-#endif
     }
     
     static int lua_glutShowOverlay(lua_State *L) {
-#ifndef LUAGL_FUNC_AS_ARG
-      return WrapFunc0<glutShowOverlay>::Call(L);
-#else
       return WrapFunc0::Call(L, glutShowOverlay);
-#endif
     }
     
     static int lua_glutHideOverlay(lua_State *L) {
-#ifndef LUAGL_FUNC_AS_ARG
-      return WrapFunc0<glutHideOverlay>::Call(L);
-#else
       return WrapFunc0::Call(L, glutHideOverlay);
-#endif
     }
 
     static int lua_glutCreateMenu(lua_State *L) {
@@ -961,11 +845,7 @@ class LuaGLUT {
     }
     
     static int lua_glutSetMenu(lua_State *L) {
-#ifndef LUAGL_FUNC_AS_ARG
-      return WrapFunc1<CInt, glutSetMenu>::Call(L);
-#else
       return WrapFunc1<CInt >::Call(L, glutSetMenu);
-#endif
     }
     
     static int lua_glutAddMenuEntry(lua_State *L) {
@@ -978,11 +858,7 @@ class LuaGLUT {
     }
     
     static int lua_glutAddSubMenu(lua_State *L) {
-#ifndef LUAGL_FUNC_AS_ARG
-      return WrapFunc2<String, CInt, glutAddSubMenu>::Call(L);
-#else
       return WrapFunc2<String, CInt >::Call(L, glutAddSubMenu);
-#endif
     }
     
     static int lua_glutChangeToMenuEntry(lua_State *L) {
@@ -996,35 +872,19 @@ class LuaGLUT {
     }
     
     static int lua_glutChangeToSubMenu(lua_State *L) {
-#ifndef LUAGL_FUNC_AS_ARG
-      return WrapFunc3<CInt, String, CInt, glutChangeToSubMenu>::Call(L);
-#else
       return WrapFunc3<CInt, String, CInt >::Call(L, glutChangeToSubMenu);
-#endif
     }
     
     static int lua_glutRemoveMenuItem(lua_State *L) {
-#ifndef LUAGL_FUNC_AS_ARG
-      return WrapFunc1<CInt, glutRemoveMenuItem>::Call(L);
-#else
       return WrapFunc1<CInt >::Call(L, glutRemoveMenuItem);
-#endif
     }
     
     static int lua_glutAttachMenu(lua_State *L) {
-#ifndef LUAGL_FUNC_AS_ARG
-      return WrapFunc1<CInt, glutAttachMenu>::Call(L);
-#else
       return WrapFunc1<CInt >::Call(L, glutAttachMenu);
-#endif
     }
     
     static int lua_glutDetachMenu(lua_State *L) {
-#ifndef LUAGL_FUNC_AS_ARG
-      return WrapFunc1<CInt, glutDetachMenu>::Call(L);
-#else
       return WrapFunc1<CInt >::Call(L, glutDetachMenu);
-#endif
     }
     
     static int lua_glutDisplayFunc(lua_State *L) {
@@ -1585,11 +1445,7 @@ class LuaGLUT {
     }
   
     static int lua_glutSetColor(lua_State *L) {
-#ifndef LUAGL_FUNC_AS_ARG
-      return WrapFunc4<CInt, Float, Float, Float, glutSetColor>::Call(L);
-#else
       return WrapFunc4<CInt, Float, Float, Float >::Call(L, glutSetColor);
-#endif
     }
     
     static int lua_glutGetColor(lua_State *L) {
@@ -1602,11 +1458,7 @@ class LuaGLUT {
     }
     
     static int lua_glutCopyColormap(lua_State *L) {
-#ifndef LUAGL_FUNC_AS_ARG
-      return WrapFunc1<CInt, glutCopyColormap>::Call(L);
-#else
       return WrapFunc1<CInt >::Call(L, glutCopyColormap);
-#endif
     }
     
     static int lua_glutGet(lua_State *L) {
@@ -1689,147 +1541,75 @@ class LuaGLUT {
     }
 
     static int lua_glutWireSphere(lua_State *L) {
-#ifndef LUAGL_FUNC_AS_ARG
-      return WrapFunc3<Double, Int, Int, glutWireSphere>::Call(L);
-#else
       return WrapFunc3<Double, Int, Int >::Call(L, glutWireSphere);
-#endif
     }
     
     static int lua_glutSolidSphere(lua_State *L) {
-#ifndef LUAGL_FUNC_AS_ARG
-      return WrapFunc3<Double, Int, Int, glutSolidSphere>::Call(L);
-#else
       return WrapFunc3<Double, Int, Int >::Call(L, glutSolidSphere);
-#endif
     }
     
     static int lua_glutWireCone(lua_State *L) {
-#ifndef LUAGL_FUNC_AS_ARG
-      return WrapFunc4<Double, Double, Int, Int, glutWireCone>::Call(L);
-#else
       return WrapFunc4<Double, Double, Int, Int >::Call(L, glutWireCone);
-#endif
     }
     
     static int lua_glutSolidCone(lua_State *L) {
-#ifndef LUAGL_FUNC_AS_ARG
-      return WrapFunc4<Double, Double, Int, Int, glutSolidCone>::Call(L);
-#else
       return WrapFunc4<Double, Double, Int, Int >::Call(L, glutSolidCone);
-#endif
     }
     
     static int lua_glutWireCube(lua_State *L) {
-#ifndef LUAGL_FUNC_AS_ARG
-      return WrapFunc1<Double, glutWireCube>::Call(L);
-#else
       return WrapFunc1<Double >::Call(L, glutWireCube);
-#endif
     }
     
     static int lua_glutSolidCube(lua_State *L) {
-#ifndef LUAGL_FUNC_AS_ARG
-      return WrapFunc1<Double, glutSolidCube>::Call(L);
-#else
       return WrapFunc1<Double >::Call(L, glutSolidCube);
-#endif
     }
     
     static int lua_glutWireTorus(lua_State *L) {
-#ifndef LUAGL_FUNC_AS_ARG
-      return WrapFunc4<Double, Double, Int, Int, glutWireTorus>::Call(L);
-#else
       return WrapFunc4<Double, Double, Int, Int >::Call(L, glutWireTorus);
-#endif
     }
     
     static int lua_glutSolidTorus(lua_State *L) {
-#ifndef LUAGL_FUNC_AS_ARG
-      return WrapFunc4<Double, Double, Int, Int, glutSolidTorus>::Call(L);
-#else
       return WrapFunc4<Double, Double, Int, Int >::Call(L, glutSolidTorus);
-#endif
     }
     
     static int lua_glutWireDodecahedron(lua_State *L) {
-#ifndef LUAGL_FUNC_AS_ARG
-      return WrapFunc0<glutWireDodecahedron>::Call(L);
-#else
       return WrapFunc0::Call(L, glutWireDodecahedron);
-#endif
     }
     
     static int lua_glutSolidDodecahedron(lua_State *L) {
-#ifndef LUAGL_FUNC_AS_ARG
-      return WrapFunc0<glutSolidDodecahedron>::Call(L);
-#else
       return WrapFunc0::Call(L, glutSolidDodecahedron);
-#endif
     }
     
     static int lua_glutWireTeapot(lua_State *L) {
-#ifndef LUAGL_FUNC_AS_ARG
-      return WrapFunc1<Double, glutWireTeapot>::Call(L);
-#else
       return WrapFunc1<Double >::Call(L, glutWireTeapot);
-#endif
     }
     
     static int lua_glutSolidTeapot(lua_State *L) {
-#ifndef LUAGL_FUNC_AS_ARG
-      return WrapFunc1<Double, glutSolidTeapot>::Call(L);
-#else
       return WrapFunc1<Double >::Call(L, glutSolidTeapot);
-#endif
     }
     
     static int lua_glutWireOctahedron(lua_State *L) {
-#ifndef LUAGL_FUNC_AS_ARG
-      return WrapFunc0<glutWireOctahedron>::Call(L);
-#else
       return WrapFunc0::Call(L, glutWireOctahedron);
-#endif
     }
     
     static int lua_glutSolidOctahedron(lua_State *L) {
-#ifndef LUAGL_FUNC_AS_ARG
-      return WrapFunc0<glutSolidOctahedron>::Call(L);
-#else
       return WrapFunc0::Call(L, glutSolidOctahedron);
-#endif
     }
     
     static int lua_glutWireTetrahedron(lua_State *L) {
-#ifndef LUAGL_FUNC_AS_ARG
-      return WrapFunc0<glutWireTetrahedron>::Call(L);
-#else
       return WrapFunc0::Call(L, glutWireTetrahedron);
-#endif
     }
     
     static int lua_glutSolidTetrahedron(lua_State *L) {
-#ifndef LUAGL_FUNC_AS_ARG
-      return WrapFunc0<glutSolidTetrahedron>::Call(L);
-#else
       return WrapFunc0::Call(L, glutSolidTetrahedron);
-#endif
     }
     
     static int lua_glutWireIcosahedron(lua_State *L) {
-#ifndef LUAGL_FUNC_AS_ARG
-      return WrapFunc0<glutWireIcosahedron>::Call(L);
-#else
       return WrapFunc0::Call(L, glutWireIcosahedron);
-#endif
     }
     
     static int lua_glutSolidIcosahedron(lua_State *L) {
-#ifndef LUAGL_FUNC_AS_ARG
-      return WrapFunc0<glutSolidIcosahedron>::Call(L);
-#else
       return WrapFunc0::Call(L, glutSolidIcosahedron);
-#endif
     }
     
     static int lua_glutVideoResizeGet(lua_State *L) {
@@ -1841,75 +1621,39 @@ class LuaGLUT {
     }
     
     static int lua_glutSetupVideoResizing(lua_State *L) {
-#ifndef LUAGL_FUNC_AS_ARG
-      return WrapFunc0<glutSetupVideoResizing>::Call(L);
-#else
       return WrapFunc0::Call(L, glutSetupVideoResizing);
-#endif
     }
     
     static int lua_glutStopVideoResizing(lua_State *L) {
-#ifndef LUAGL_FUNC_AS_ARG
-      return WrapFunc0<glutStopVideoResizing>::Call(L);
-#else
       return WrapFunc0::Call(L, glutStopVideoResizing);
-#endif
     }
     
     static int lua_glutVideoResize(lua_State *L) {
-#ifndef LUAGL_FUNC_AS_ARG
-      return WrapFunc4<CInt, CInt, CInt, CInt, glutVideoResize>::Call(L);
-#else
       return WrapFunc4<CInt, CInt, CInt, CInt >::Call(L, glutVideoResize);
-#endif
     }
     
     static int lua_glutVideoPan(lua_State *L) {
-#ifndef LUAGL_FUNC_AS_ARG
-      return WrapFunc4<CInt, CInt, CInt, CInt, glutVideoPan>::Call(L);
-#else
       return WrapFunc4<CInt, CInt, CInt, CInt >::Call(L, glutVideoPan);
-#endif
     }
     
     static int lua_glutReportErrors(lua_State *L) {
-#ifndef LUAGL_FUNC_AS_ARG
-      return WrapFunc0<glutReportErrors>::Call(L);
-#else
       return WrapFunc0::Call(L, glutReportErrors);
-#endif
     }
 
     static int lua_glutIgnoreKeyRepeat(lua_State *L) {
-#ifndef LUAGL_FUNC_AS_ARG
-      return WrapFunc1<CInt, glutIgnoreKeyRepeat>::Call(L);
-#else
       return WrapFunc1<CInt >::Call(L, glutIgnoreKeyRepeat);
-#endif
     }
     
     static int lua_glutSetKeyRepeat(lua_State *L) {
-#ifndef LUAGL_FUNC_AS_ARG
-      return WrapFunc1<CInt, glutSetKeyRepeat>::Call(L);
-#else
       return WrapFunc1<CInt >::Call(L, glutSetKeyRepeat);
-#endif
     }
     
     static int lua_glutForceJoystickFunc(lua_State *L) {
-#ifndef LUAGL_FUNC_AS_ARG
-      return WrapFunc0<glutForceJoystickFunc>::Call(L);
-#else
       return WrapFunc0::Call(L, glutForceJoystickFunc);
-#endif
     }
 
     static int lua_glutGameModeString(lua_State *L) {
-#ifndef LUAGL_FUNC_AS_ARG
-      return WrapFunc1<String, glutGameModeString>::Call(L);
-#else
       return WrapFunc1<String >::Call(L, glutGameModeString);
-#endif
     }
     
     static int lua_glutEnterGameMode(lua_State *L) {
@@ -1920,11 +1664,7 @@ class LuaGLUT {
     }
     
     static int lua_glutLeaveGameMode(lua_State *L) {
-#ifndef LUAGL_FUNC_AS_ARG
-      return WrapFunc0<glutLeaveGameMode>::Call(L);
-#else
       return WrapFunc0::Call(L, glutLeaveGameMode);
-#endif
     }
     
     static int lua_glutGameModeGet(lua_State *L) {

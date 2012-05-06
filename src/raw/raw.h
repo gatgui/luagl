@@ -447,7 +447,10 @@ class StructuredBuffer {
 
     // use this one at your own risk [hint: single element buffer iterator]
     inline void next() {
-      mData += mElementStride;
+      // mData += mElementStride;
+      if (mIsIter) {
+        mData += mIterStride;
+      }
     }
     
     inline const Structure& getStructure() const {
@@ -500,6 +503,18 @@ class StructuredBuffer {
     
     std::string toString() const;
     
+    inline bool asIterator() {
+      if (!mOwns) {
+        mIsIter = true;
+        mIterStride = mElementStride;
+        // override mElementStride as it is used to compute element size
+        mElementStride = getFieldCount();
+        return true;
+      } else {
+        return false;
+      }
+    }
+    
   protected:
     
     Structure mStructure;
@@ -507,16 +522,18 @@ class StructuredBuffer {
     size_t mSize;
     mutable bool mOwns;
     size_t mElementStride;
+    bool mIsIter;
+    size_t mIterStride;
 };
 
 template <DataType DT>
 StructuredBuffer<DT>::StructuredBuffer()
-  : mData(0), mSize(0), mOwns(true), mElementStride(0) {
+  : mData(0), mSize(0), mOwns(true), mElementStride(0), mIsIter(false), mIterStride(0) {
 } 
 
 template <DataType DT>
 StructuredBuffer<DT>::StructuredBuffer(const Structure &s, size_t n)
-  : mStructure(s), mSize(n), mOwns(true) {
+  : mStructure(s), mSize(n), mOwns(true), mIsIter(false), mIterStride(0) {
   mElementStride = s.getFieldCount();
   mData = new T[n * getFieldCount()];
   for (size_t i=0; i<n; ++i) {
@@ -527,14 +544,21 @@ StructuredBuffer<DT>::StructuredBuffer(const Structure &s, size_t n)
 template <DataType DT>
 StructuredBuffer<DT>::StructuredBuffer(const Structure &s, T *foreign,
                                        size_t n, size_t es)
-  : mStructure(s), mData(foreign), mSize(n), mOwns(false), mElementStride(es) {
+  : mStructure(s), mData(foreign), mSize(n), mOwns(false), mElementStride(es),
+    mIsIter(false), mIterStride(0) {
 }
 
 template <DataType DT>
 StructuredBuffer<DT>::StructuredBuffer(const StructuredBuffer<DT> &rhs)
   : mStructure(rhs.mStructure), mData(rhs.mData),
-    mSize(rhs.mSize), mOwns(rhs.mOwns), mElementStride(rhs.mElementStride) {
-  rhs.mOwns = false;
+    mSize(rhs.mSize), mOwns(rhs.mOwns), mElementStride(rhs.mElementStride),
+    mIsIter(rhs.mIsIter), mIterStride(rhs.mIterStride) {
+  if (mIsIter) {
+    // do not steal ownership
+    mOwns = false;
+  } else {
+    rhs.mOwns = false;
+  }
 }
 
 template <DataType DT>
@@ -561,6 +585,7 @@ StructuredBuffer<DT>& StructuredBuffer<DT>::operator=(const StructuredBuffer<DT>
     mSize = rhs.mSize;
     mElementStride = rhs.mElementStride;
     mOwns = rhs.mOwns;
+    mIsIter = rhs.mIsIter;
     rhs.mOwns = false;
   }
   return *this;
@@ -573,7 +598,14 @@ StructuredBuffer<DT> StructuredBuffer<DT>::getFieldBuffer(const std::string &nam
   // reset offsets, so that start from 0 [offset is included in data ptr]
   // what this means is that we really need to copy the structure
   s.resolve();
-  return StructuredBuffer(s, data, mSize, getElementStride());
+  //return StructuredBuffer(s, data, mSize, getElementStride());
+  if (mIsIter) {
+    StructuredBuffer tmp(s, data, mSize, mIterStride);
+    tmp.asIterator();
+    return tmp;
+  } else {
+    return StructuredBuffer(s, data, mSize, getElementStride());
+  }
 }
 
 template <DataType DT>

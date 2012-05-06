@@ -27,7 +27,7 @@ USA.
 #ifdef _WIN32
 # define WIN32_LEAN_AND_MEAN
 # include <windows.h>
-# pragma warning(disable: 4702)
+# pragma warning(disable: 4702 4290)
 # define EXPORT extern "C" __declspec(dllexport)
 #else
 # define EXPORT extern "C"
